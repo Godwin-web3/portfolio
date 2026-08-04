@@ -35,7 +35,7 @@ export default function Home() {
             className="rounded-2xl border border-white/10"
           />
           <div>
-            <p className="font-mono text-sm text-emerald-400">Godwin</p>
+            <p className="font-mono text-sm text-emerald-400">GodwinXbt</p>
             <p className="text-sm text-neutral-500">Smart contract developer &amp; security researcher</p>
           </div>
         </div>
