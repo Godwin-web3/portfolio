@@ -29,7 +29,7 @@ export default function Home() {
         <div className="flex items-center gap-4">
           <Image
             src="/avatar.jpg"
-            alt="Godwin"
+            alt="GodwinXbt"
             width={64}
             height={64}
             className="rounded-2xl border border-white/10"
