@@ -10,7 +10,7 @@ export default function AboutPage() {
     <div className="mx-auto max-w-2xl px-6 py-20">
       <p className="font-mono text-sm text-emerald-400">About</p>
       <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white">
-        I&apos;d rather build the tool than win the hackathon.
+        I build the infrastructure I audit with.
       </h1>
 
       <div className="mt-8 space-y-5 leading-relaxed text-neutral-400">
@@ -20,7 +20,6 @@ export default function AboutPage() {
           not just theorizing about what could go wrong.
         </p>
         <p>
-          Instead of chasing hackathon wins, I build the infrastructure I audit with.
           ChainSentinel is my flagship project: an AI-augmented smart contract audit engine that
           combines deterministic structural detectors with an LLM reasoning layer. It doesn&apos;t
           just generate candidate hypotheses — it runs an adversarial review gate that catches its

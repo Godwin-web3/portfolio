@@ -14,10 +14,9 @@ export default function Home() {
           I build the tools I audit with.
         </h1>
         <p className="mt-6 max-w-xl text-lg leading-relaxed text-neutral-400">
-          I don&apos;t collect hackathon wins — I build infrastructure. ChainSentinel is an
-          AI-augmented security audit engine I designed and shipped myself: structural
-          detectors, an adversarial AI review gate that catches its own false positives, and
-          real, verified findings against live protocols.
+          ChainSentinel is an AI-augmented security audit engine I designed and shipped myself:
+          structural detectors, an adversarial AI review gate that catches its own false
+          positives, and real, verified findings against live protocols.
         </p>
         <div className="mt-8 flex flex-wrap gap-4">
           <Link
