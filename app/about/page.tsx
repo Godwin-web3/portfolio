@@ -11,7 +11,7 @@ export default function AboutPage() {
     <div className="mx-auto max-w-2xl px-6 py-20">
       <Image
         src="/avatar.jpg"
-        alt="Godwin"
+        alt="GodwinXbt"
         width={96}
         height={96}
         className="rounded-2xl border border-white/10"
