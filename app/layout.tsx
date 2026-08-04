@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://godwinxbt.vercel.app"),
-  title: "Godwin — Security Research & Tooling",
+  title: "Godwin — Smart Contract Developer & Security Researcher",
   description:
-    "Smart contract security researcher. Builder of ChainSentinel, an AI-augmented audit tool. Real findings, real proof, no inflated numbers.",
+    "Smart contract developer and security researcher. Builder of ChainSentinel, my AI-augmented audit tool. Real findings, real proof, no inflated numbers.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

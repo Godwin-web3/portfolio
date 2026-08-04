@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "About — Godwin",
-  description: "Smart contract security researcher and tool builder.",
+  description: "Smart contract developer and security researcher.",
 };
 
 export default function AboutPage() {
@@ -18,17 +18,18 @@ export default function AboutPage() {
       />
       <p className="mt-6 font-mono text-sm text-emerald-400">About</p>
       <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white">
-        I build the infrastructure I audit with.
+        Smart contract developer. Security researcher.
       </h1>
 
       <div className="mt-8 space-y-5 leading-relaxed text-neutral-400">
         <p>
-          I do smart contract security research — reading real, deployed source, tracing root
-          causes, and proving them with working proofs-of-concept against forked mainnet state,
-          not just theorizing about what could go wrong.
+          I build and ship Solidity systems, and I do smart contract security research on the
+          side — reading real, deployed source, tracing root causes, and proving them with
+          working proofs-of-concept against forked mainnet state, not just theorizing about what
+          could go wrong.
         </p>
         <p>
-          ChainSentinel is my flagship project: an AI-augmented smart contract audit engine that
+          ChainSentinel is my project: an AI-augmented smart contract audit engine that
           combines deterministic structural detectors with an LLM reasoning layer. It doesn&apos;t
           just generate candidate hypotheses — it runs an adversarial review gate that catches its
           own false positives before they&apos;re ever reported, because I watched it wrongly

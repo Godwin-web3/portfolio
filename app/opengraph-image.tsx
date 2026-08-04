@@ -42,7 +42,7 @@ export default function OpengraphImage() {
               maxWidth: 780,
             }}
           >
-            I build the tools I audit with.
+            Smart contract developer &amp; security researcher.
           </div>
           <div style={{ display: "flex", marginTop: 32, gap: 40, fontSize: 24, color: "#a3a3a3" }}>
             <div style={{ display: "flex" }}>{stats.totalFindings} real findings</div>

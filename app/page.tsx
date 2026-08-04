@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { findings, stats } from "./lib/findings";
 import FindingCard from "./components/FindingCard";
@@ -25,14 +26,27 @@ export default function Home() {
     <div className="mx-auto max-w-5xl px-6">
       {/* Hero */}
       <section className="py-24">
-        <p className="font-mono text-sm text-emerald-400">Smart contract security research</p>
-        <h1 className="mt-4 max-w-2xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-          I build the tools I audit with.
+        <div className="flex items-center gap-4">
+          <Image
+            src="/avatar.jpg"
+            alt="Godwin"
+            width={64}
+            height={64}
+            className="rounded-2xl border border-white/10"
+          />
+          <div>
+            <p className="font-mono text-sm text-emerald-400">Godwin</p>
+            <p className="text-sm text-neutral-500">Smart contract developer &amp; security researcher</p>
+          </div>
+        </div>
+        <h1 className="mt-8 max-w-2xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+          I write smart contracts, then find what breaks them.
         </h1>
         <p className="mt-6 max-w-xl text-lg leading-relaxed text-neutral-400">
-          ChainSentinel is an AI-augmented security audit engine I designed and shipped myself:
-          structural detectors, an adversarial AI review gate that catches its own false
-          positives, and real, verified findings against live protocols.
+          I&apos;m a smart contract developer and security researcher. I build and ship Solidity
+          systems, and I audit code with the same rigor I&apos;d want turned on my own — reading
+          real, deployed source, tracing root causes, and proving exploits with working
+          proofs-of-concept against forked mainnet state.
         </p>
         <div className="mt-8 flex flex-wrap gap-4">
           <Link
@@ -41,13 +55,12 @@ export default function Home() {
           >
             View real findings
           </Link>
-          <a
-            href="https://github.com/godwin-web3/chainsentinel"
-            target="_blank"
+          <Link
+            href="/about"
             className="rounded-lg border border-white/15 px-5 py-2.5 text-sm font-medium text-white transition hover:border-white/30"
           >
-            ChainSentinel on GitHub
-          </a>
+            About me
+          </Link>
         </div>
       </section>
 
@@ -84,14 +97,15 @@ export default function Home() {
 
       {/* ChainSentinel callout */}
       <section className="mb-24 rounded-2xl border border-white/10 bg-white/[0.02] p-8">
-        <p className="font-mono text-xs uppercase tracking-wide text-emerald-400">Flagship project</p>
+        <p className="font-mono text-xs uppercase tracking-wide text-emerald-400">My project</p>
         <h2 className="mt-2 text-2xl font-semibold text-white">ChainSentinel</h2>
         <p className="mt-3 max-w-2xl text-neutral-400">
-          An AI-augmented smart contract audit engine. Structural detectors generate candidates,
-          Echidna fuzzes them for free, and an adversarial AI review gate — which I designed after
-          catching it wrongly confirm a false positive on a live protocol mid-audit — decides what
-          actually earns the CONFIRMED label. Every finding carries provenance: what flagged it,
-          whether AI reviewed it, and why.
+          ChainSentinel is an AI-augmented smart contract audit engine I designed and built to
+          speed up my own audits. Structural detectors generate candidates, Echidna fuzzes them
+          for free, and an adversarial AI review gate — which I added after catching it wrongly
+          confirm a false positive on a live protocol mid-audit — decides what actually earns the
+          CONFIRMED label. Every finding carries provenance: what flagged it, whether AI reviewed
+          it, and why.
         </p>
         <a
           href="https://github.com/godwin-web3/chainsentinel"
