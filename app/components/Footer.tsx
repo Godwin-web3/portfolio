@@ -12,6 +12,17 @@ export default function Footer() {
         </a>{" "}
         as its own proof of work.
       </p>
+      <div className="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs">
+        <a href="mailto:godwinxbt@gmail.com" className="transition hover:text-white">
+          Email
+        </a>
+        <a href="https://x.com/GodwinXbt" target="_blank" className="transition hover:text-white">
+          X
+        </a>
+        <a href="https://t.me/GodwinXbt" target="_blank" className="transition hover:text-white">
+          Telegram
+        </a>
+      </div>
     </footer>
   );
 }

@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://godwinxbt.vercel.app"),
   title: "Godwin — Security Research & Tooling",
   description:
     "Smart contract security researcher. Builder of ChainSentinel, an AI-augmented audit tool. Real findings, real proof, no inflated numbers.",

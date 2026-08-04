@@ -2,8 +2,24 @@ import Link from "next/link";
 import { findings, stats } from "./lib/findings";
 import FindingCard from "./components/FindingCard";
 
+function pickFeatured(): typeof findings {
+  const ranked = findings
+    .filter((f) => f.severity === "Critical" || f.severity === "High")
+    .sort((a, b) => (a.severity === b.severity ? 0 : a.severity === "Critical" ? -1 : 1));
+
+  const seenProtocols = new Set<string>();
+  const picked: typeof findings = [];
+  for (const f of ranked) {
+    if (seenProtocols.has(f.protocol)) continue;
+    seenProtocols.add(f.protocol);
+    picked.push(f);
+    if (picked.length === 3) break;
+  }
+  return picked;
+}
+
 export default function Home() {
-  const featured = findings.filter((f) => f.severity === "Critical" || f.severity === "High").slice(0, 3);
+  const featured = pickFeatured();
 
   return (
     <div className="mx-auto max-w-5xl px-6">
