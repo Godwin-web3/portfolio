@@ -86,6 +86,15 @@ export default async function FindingDetailPage({
             ? "Verified against real, live deployed contract state."
             : "Verified against real source code, not live/deployed on this chain."}
         </p>
+        {finding.pocUrl && (
+          <a
+            href={finding.pocUrl}
+            target="_blank"
+            className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-emerald-400 hover:text-emerald-300"
+          >
+            View the Foundry PoC &rarr;
+          </a>
+        )}
       </section>
     </div>
   );

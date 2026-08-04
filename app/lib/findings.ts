@@ -13,7 +13,11 @@ export interface Finding {
   address?: string;
   tags: string[];
   verifiedLive: boolean;
+  pocUrl?: string;
 }
+
+const CS_BRANCH =
+  "https://github.com/godwin-web3/chainsentinel/blob/claude/chainsentinel-web3-barriers-7y4xzh";
 
 export const findings: Finding[] = [
   {
@@ -32,6 +36,7 @@ export const findings: Finding[] = [
     address: "0x4695e50A38E33Ea09D1F623ba8A8dB24219bb06a",
     tags: ["reentrancy", "CEI violation", "governance"],
     verifiedLive: true,
+    pocUrl: `${CS_BRANCH}/test/Verify_IncentiveVoting_CreateTokenApprovalVote_Reentrancy.t.sol`,
   },
   {
     slug: "lemon-fun-bonding-curve-theft",
@@ -49,6 +54,7 @@ export const findings: Finding[] = [
     address: "0xb5B70EF8698e022d38E2AC211ddfd0a5436bD1Ad",
     tags: ["access control", "trust parameter", "fund theft"],
     verifiedLive: true,
+    pocUrl: `${CS_BRANCH}/test/Exploit_LemonCurveFactory_FakeDexRug.t.sol`,
   },
   {
     slug: "flex-lender-auction-self-deal",
@@ -65,6 +71,7 @@ export const findings: Finding[] = [
       "PoC redeemed a real existing large Lender depositor's shares (no synthetic deposit), triggered the shortfall/auction-kick path against real on-chain state, then took the resulting auction as that depositor: net USDC cost was 0, ~39,131 tokens extracted for free.",
     tags: ["accounting", "auction mechanics", "self-deal"],
     verifiedLive: true,
+    pocUrl: `${CS_BRANCH}/test/Exploit_Flex_AuctionSelfDeal.t.sol`,
   },
   {
     slug: "flex-borrower-auction-self-deal",
@@ -81,6 +88,7 @@ export const findings: Finding[] = [
       "Confirmed the root cause found on the Lender-withdrawal path is independently reachable through this second entry point, against real deployed contracts.",
     tags: ["accounting", "auction mechanics", "self-deal"],
     verifiedLive: true,
+    pocUrl: `${CS_BRANCH}/test/Exploit_Flex_BorrowerAuctionSelfDeal.t.sol`,
   },
   {
     slug: "hydrex-minter-initializer-noop",
@@ -97,6 +105,7 @@ export const findings: Finding[] = [
       "Live precondition verified directly against unmodified mainnet state: storage slot 206 on the real Minter proxy already held address(1), proving _initialize() ran once as intended and remains re-callable by governor. PoC (real governor impersonated) confirmed a second call grants a brand-new permanent veHYDX lock with ~7.69M units of governance voting power for zero real collateral.",
     tags: ["initializer", "governance", "access control"],
     verifiedLive: true,
+    pocUrl: `${CS_BRANCH}/test/Exploit_Hydrex_MinterV4_BrokenOneTimeGuard.t.sol`,
   },
   {
     slug: "noon-redeemhandler-unratiod-drain",
@@ -114,6 +123,7 @@ export const findings: Finding[] = [
     address: "0xcC2447B495cBc8c2263619Ff3dc4c13604c9b11f",
     tags: ["access control", "accounting", "fund drain"],
     verifiedLive: true,
+    pocUrl: `${CS_BRANCH}/test/Exploit_Noon_RedeemHandler_UnratiodDrain.t.sol`,
   },
   {
     slug: "noon-minterhandler-uncollateralized-mint",
@@ -131,6 +141,7 @@ export const findings: Finding[] = [
     address: "0xB91b361ebE4022Bb62dF0651bDD09b21209ac058",
     tags: ["access control", "accounting", "uncollateralized mint"],
     verifiedLive: true,
+    pocUrl: `${CS_BRANCH}/test/Exploit_Noon_UncollateralizedSelfMint.t.sol`,
   },
   {
     slug: "hyperfx-calldispatcher-drain",
@@ -148,6 +159,7 @@ export const findings: Finding[] = [
     address: "0xE2C7e576E26E0bE7aC97c6fE925bcDAbD87c4bEd",
     tags: ["access control", "intent architecture", "fund drain"],
     verifiedLive: true,
+    pocUrl: `${CS_BRANCH}/test/Exploit_HyperFX_Dispatcher_Dust.t.sol`,
   },
   {
     slug: "monolith-phantom-collateral",

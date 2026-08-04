@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "About — Godwin",
@@ -8,7 +9,14 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-2xl px-6 py-20">
-      <p className="font-mono text-sm text-emerald-400">About</p>
+      <Image
+        src="/avatar.jpg"
+        alt="Godwin"
+        width={96}
+        height={96}
+        className="rounded-2xl border border-white/10"
+      />
+      <p className="mt-6 font-mono text-sm text-emerald-400">About</p>
       <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white">
         I&apos;d rather build the tool than win the hackathon.
       </h1>
@@ -49,6 +57,32 @@ export default function AboutPage() {
         >
           GitHub Profile
         </a>
+      </div>
+
+      <div className="mt-12 border-t border-white/10 pt-8">
+        <p className="text-sm font-semibold uppercase tracking-wide text-emerald-400">Get in touch</p>
+        <div className="mt-4 flex flex-wrap gap-x-8 gap-y-3 text-sm">
+          <a
+            href="mailto:godwinxbt@gmail.com"
+            className="text-neutral-400 transition hover:text-white"
+          >
+            godwinxbt@gmail.com
+          </a>
+          <a
+            href="https://x.com/GodwinXbt"
+            target="_blank"
+            className="text-neutral-400 transition hover:text-white"
+          >
+            @GodwinXbt on X
+          </a>
+          <a
+            href="https://t.me/GodwinXbt"
+            target="_blank"
+            className="text-neutral-400 transition hover:text-white"
+          >
+            @GodwinXbt on Telegram
+          </a>
+        </div>
       </div>
     </div>
   );
