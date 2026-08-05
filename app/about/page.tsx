@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Contact from "../components/Contact";
 
 export const metadata: Metadata = {
   title: "About — Godwin",
@@ -59,31 +60,7 @@ export default function AboutPage() {
         </a>
       </div>
 
-      <div className="mt-12 border-t border-white/10 pt-8">
-        <p className="text-sm font-semibold uppercase tracking-wide text-emerald-400">Get in touch</p>
-        <div className="mt-4 flex flex-wrap gap-x-8 gap-y-3 text-sm">
-          <a
-            href="mailto:godwinxbt@gmail.com"
-            className="text-neutral-400 transition hover:text-white"
-          >
-            godwinxbt@gmail.com
-          </a>
-          <a
-            href="https://x.com/GodwinXbt"
-            target="_blank"
-            className="text-neutral-400 transition hover:text-white"
-          >
-            @GodwinXbt on X
-          </a>
-          <a
-            href="https://t.me/GodwinXbt"
-            target="_blank"
-            className="text-neutral-400 transition hover:text-white"
-          >
-            @GodwinXbt on Telegram
-          </a>
-        </div>
-      </div>
+      <Contact />
     </div>
   );
 }
