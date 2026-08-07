@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { findings, stats } from "../lib/findings";
+import { groupedByProtocol, stats } from "../lib/findings";
 import FindingCard from "../components/FindingCard";
 
 export const metadata: Metadata = {
@@ -21,9 +21,24 @@ export default function FindingsPage() {
         practice.
       </p>
 
-      <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {findings.map((f) => (
-          <FindingCard key={f.slug} finding={f} />
+      <div className="mt-12 space-y-14">
+        {groupedByProtocol.map((group) => (
+          <section key={group.protocol}>
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b border-white/10 pb-3">
+              <h2 className="text-lg font-semibold text-white">{group.protocol}</h2>
+              <span className="font-mono text-xs uppercase tracking-wide text-neutral-500">
+                {group.chains.join(" / ")}
+              </span>
+              <span className="text-xs text-neutral-500">
+                {group.findings.length} finding{group.findings.length === 1 ? "" : "s"}
+              </span>
+            </div>
+            <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {group.findings.map((f) => (
+                <FindingCard key={f.slug} finding={f} hideProtocol />
+              ))}
+            </div>
+          </section>
         ))}
       </div>
     </div>

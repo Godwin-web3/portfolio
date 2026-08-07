@@ -2,7 +2,15 @@ import Link from "next/link";
 import type { Finding } from "@/app/lib/findings";
 import SeverityBadge from "./SeverityBadge";
 
-export default function FindingCard({ finding }: { finding: Finding }) {
+export default function FindingCard({
+  finding,
+  hideProtocol = false,
+}: {
+  finding: Finding;
+  /** Omit the protocol name from the eyebrow line - use when the card already
+   *  sits under a protocol-level heading (e.g. the grouped findings page). */
+  hideProtocol?: boolean;
+}) {
   return (
     <Link
       href={`/findings/${finding.slug}`}
@@ -11,7 +19,7 @@ export default function FindingCard({ finding }: { finding: Finding }) {
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="text-xs font-mono uppercase tracking-wide text-neutral-500">
-            {finding.protocol} · {finding.chain}
+            {hideProtocol ? finding.chain : `${finding.protocol} · ${finding.chain}`}
           </p>
           <h3 className="mt-1 text-base font-medium text-white group-hover:text-emerald-400 transition">
             {finding.title}

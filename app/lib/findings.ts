@@ -308,3 +308,33 @@ export const stats = {
   protocols: new Set(findings.map((f) => f.protocol)).size,
   criticalOrHigh: findings.filter((f) => f.severity === "Critical" || f.severity === "High").length,
 };
+
+export interface ProtocolGroup {
+  protocol: string;
+  /** Distinct chains this protocol's findings span - usually just one. */
+  chains: string[];
+  findings: Finding[];
+}
+
+/** Findings grouped by protocol, in first-appearance order. */
+export const groupedByProtocol: ProtocolGroup[] = (() => {
+  const order: string[] = [];
+  const byProtocol = new Map<string, Finding[]>();
+
+  for (const f of findings) {
+    if (!byProtocol.has(f.protocol)) {
+      order.push(f.protocol);
+      byProtocol.set(f.protocol, []);
+    }
+    byProtocol.get(f.protocol)!.push(f);
+  }
+
+  return order.map((protocol) => {
+    const group = byProtocol.get(protocol)!;
+    return {
+      protocol,
+      chains: Array.from(new Set(group.map((f) => f.chain))),
+      findings: group,
+    };
+  });
+})();
