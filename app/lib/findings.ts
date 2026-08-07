@@ -211,6 +211,96 @@ export const findings: Finding[] = [
     tags: ["accounting", "AMM", "LP dilution", "fuzzing"],
     verifiedLive: false,
   },
+  {
+    slug: "orvex-voterv5-stale-reward-index",
+    protocol: "Orvex",
+    title: "VoterV5 stale reward-index lets a late voter capture other gauges' skipped-epoch rewards",
+    severity: "High",
+    status: "Verified with working PoC",
+    chain: "Robinhood Chain",
+    summary:
+      "VoterV5._vote()/_reset() never refresh a gauge's reward-index checkpoint - unlike real Velodrome, which updates it on every vote action. The checkpoint only advances via distribute()/killGauge(), which is permissionless and unenforced per-epoch, so a gauge that goes unvoted for N epochs then receives even minimal weight captures the full N-epoch accumulated index delta.",
+    rootCause:
+      "supplyIndex[gauge] stays frozen at its last distribute() call while the global index keeps advancing every epoch regardless of that gauge's participation - multiplying the full stale delta by only the most recent epoch's vote weight on the next distribute().",
+    verification:
+      "Fork PoC against live VoterV5 state: a gauge with zero vote weight for 9 real epochs, then 0.1% of total weight in the 10th, captured 10x its fair one-epoch entitlement when distribute() was finally called - quantified end to end, not just a broken-invariant claim.",
+    address: "0xEacfE55197F35B03B40DCD5af5919eEF7cf1c3Bd",
+    tags: ["accounting", "reward index", "governance", "value extraction"],
+    verifiedLive: true,
+    pocUrl: `${CS_BRANCH}/test/Exploit_Orvex_VoterV5_StaleRewardIndex.t.sol`,
+  },
+  {
+    slug: "orvex-protocoltoken-missing-burn-early-exit",
+    protocol: "Orvex",
+    title: "ProtocolToken.sol has no burn() - veORVX early-exit claims permanently revert",
+    severity: "High",
+    status: "Verified with working PoC",
+    chain: "Robinhood Chain",
+    summary:
+      "VotingEscrowV2_LockLogic._claim() calls token.burn(penaltyAmount) whenever an early exit's penalty is nonzero, but the real deployed ORVX token (ERC20 + ERC20Permit + Ownable2Step only) has no burn() function at all. Any user - no privileged role needed - who locks ORVX in a NON_PERMANENT lock and later tries to exit early, accepting the documented penalty, has the transaction unconditionally revert.",
+    rootCause:
+      "A core, advertised exit path calls a token function that was never implemented on the real deployed token. There is no other way to exit a NON_PERMANENT lock before natural expiry, so funds are provably stuck past the user's chosen duration regardless of what penalty they'd accept.",
+    verification:
+      "Fork PoC: funded a fresh user, created a real NON_PERMANENT lock, warped 15 days in with real remaining voting power confirmed on-chain, then showed claim() reverts inside the missing token.burn() call every time.",
+    address: "0x18657fF9943FAA5D16C6ea1BC13dd8767984C30E",
+    tags: ["token standard gap", "fund lock", "user-facing DoS"],
+    verifiedLive: true,
+    pocUrl: `${CS_BRANCH}/test/Exploit_Orvex_VotingEscrow_BrokenEarlyExit.t.sol`,
+  },
+  {
+    slug: "orvex-optiontoken-exercisev-broken",
+    protocol: "Orvex",
+    title: "oORVX.exerciseVe() unconditionally reverts - same missing-burnFrom root cause, independent entry point",
+    severity: "Medium",
+    status: "Verified — second entry point, same root cause",
+    chain: "Robinhood Chain",
+    summary:
+      "oORVX's exerciseVe() converts option tokens into a permanent veORVX lock via createLockFor(), which unconditionally calls token.burnFrom() for any PERMANENT lock inside VotingEscrowV2_LockLogic._updateLock(). ORVX has no burnFrom() either, so this documented conversion path is completely non-functional for every holder.",
+    rootCause:
+      "Same protocol-wide token-standard gap as the early-exit claim bug, reached through a third independent code path (alongside the blocked max>0 branch of the Minter genesis-mint bug) - every PERMANENT lock creation anywhere in the protocol hits this.",
+    verification:
+      "Fork PoC: wrapped real ORVX into oORVX the normal way (1:1, permissionless), then confirmed exerciseVe() reverts inside createLockFor -> _updateLock -> token.burnFrom() for a real funded holder.",
+    address: "0xD47F4D84a68C27906E599f5a0E90F95ff815A8C9",
+    tags: ["token standard gap", "broken core feature"],
+    verifiedLive: true,
+    pocUrl: `${CS_BRANCH}/test/Exploit_Orvex_OptionToken_ExerciseVe_Broken.t.sol`,
+  },
+  {
+    slug: "orvex-bveorvx-exercisev-abi-mismatch",
+    protocol: "Orvex",
+    title: "bveORVX.exerciseVe() calls a function selector that doesn't exist on the real oORVX contract",
+    severity: "Medium",
+    status: "Verified with working PoC",
+    chain: "Robinhood Chain",
+    summary:
+      "bveORVX's optionToken is statically typed as the 5-argument OptionTokenV3.exerciseVe(uint256,uint256,address,uint256,uint256) (selector 0xa9f6ee33), but the contract actually deployed at that address only implements the simpler 2-argument exerciseVe(uint256,address) (selector 0x9130325d) - two entirely different functions as far as the EVM is concerned.",
+    rootCause:
+      "An interface/version mismatch between two of Orvex's own contracts, distinct from the missing-burn bugs found elsewhere - calling a selector the target contract never defined falls through to nothing and reverts every time.",
+    verification:
+      "Fork PoC: directly probed the 5-arg selector against the real deployed optionToken address (confirmed it doesn't exist), then called bveORVX.exerciseVe() the way any real user would (amount=0, isolating the call from needing a real balance) and confirmed it reverts identically.",
+    address: "0xD2190FC5Df4aBDc9Dc4b6804dabe3435B14eb8B3",
+    tags: ["interface mismatch", "broken core feature"],
+    verifiedLive: true,
+    pocUrl: `${CS_BRANCH}/test/Exploit_Orvex_BveORVX_ExerciseVe_ABIMismatch.t.sol`,
+  },
+  {
+    slug: "orvex-minter-broken-initialize-latch",
+    protocol: "Orvex",
+    title: "MinterUpgradeableV3._initialize() one-time latch never actually latches",
+    severity: "Medium",
+    status: "Verified with working PoC",
+    chain: "Robinhood Chain",
+    summary:
+      "The guard require(_initializer != address(0), 'already initialized') is satisfied by any nonzero value, including the sentinel it sets on completion - so it never blocks a second call. The governor can re-run the genesis-distribution function at will, silently rewinding whatever decay curve the emission schedule applies.",
+    rootCause:
+      "A one-time-latch that checks 'nonzero' instead of a specific sentinel value doesn't actually latch - it resets identically every call. Proven independent of the separate missing-burnFrom token bug: the max=0 path resets active_period/getCurrentWeek back to 0 with zero dependency on that other gap.",
+    verification:
+      "Fork PoC: called the real genesis function as governor, simulated 10 real epochs passing via permissionless update_period() calls (getCurrentWeek reached 10), then called it again and confirmed the week counter was silently rewound to 0 - a second run that should have reverted at the guard instead executed in full.",
+    address: "0xb0B3B13B9122711eA9853C633CC93A925A53754f",
+    tags: ["initializer", "governance", "emission schedule"],
+    verifiedLive: true,
+    pocUrl: `${CS_BRANCH}/test/Exploit_Orvex_MinterV3_BrokenLatch.t.sol`,
+  },
 ];
 
 export const stats = {
