@@ -14,7 +14,7 @@ export default function Footer() {
         , my own audit tool, as its own proof of work.
       </p>
       <div className="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs">
-        <a href="mailto:godwinxbt@gmail.com" className="transition hover:text-white">
+        <a href="mailto:godwinxbt@gmail.com" className="-m-2 rounded-md p-2 transition hover:text-white">
           Email
         </a>
 
@@ -23,7 +23,7 @@ export default function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Twitter (X)"
-          className="transition hover:text-white"
+          className="-m-2 rounded-md p-2 transition hover:text-white"
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="inline-block h-5 w-5">
             <title>Twitter</title>
@@ -36,7 +36,7 @@ export default function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Telegram"
-          className="transition hover:text-white"
+          className="-m-2 rounded-md p-2 transition hover:text-white"
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="currentColor" className="inline-block h-5 w-5">
             <title>Telegram</title>
@@ -49,7 +49,7 @@ export default function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub"
-          className="transition hover:text-white"
+          className="-m-2 rounded-md p-2 transition hover:text-white"
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="inline-block h-5 w-5">
             <title>GitHub</title>

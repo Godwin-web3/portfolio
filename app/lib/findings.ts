@@ -309,6 +309,14 @@ export const stats = {
   criticalOrHigh: findings.filter((f) => f.severity === "Critical" || f.severity === "High").length,
 };
 
+const SEVERITY_ORDER: Severity[] = ["Critical", "High", "Medium", "Low", "Informational"];
+
+/** Count of findings per severity, in fixed severity order, omitting severities with zero findings. */
+export const severityBreakdown = SEVERITY_ORDER.map((severity) => ({
+  severity,
+  count: findings.filter((f) => f.severity === severity).length,
+})).filter((s) => s.count > 0);
+
 export interface ProtocolGroup {
   protocol: string;
   /** Distinct chains this protocol's findings span - usually just one. */

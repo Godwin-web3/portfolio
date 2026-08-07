@@ -86,11 +86,6 @@ export default function Contact() {
           </a>
         ))}
       </div>
-
-      {/* Language line to match existing content */}
-      <div className="mt-8 border-t border-white/6 pt-6 text-sm text-neutral-400">
-        Languages: <span className="text-emerald-400 font-medium">English</span> (Native)
-      </div>
     </div>
   );
 }

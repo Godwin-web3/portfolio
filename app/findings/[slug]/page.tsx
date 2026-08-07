@@ -28,8 +28,12 @@ export default async function FindingDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const finding = findings.find((f) => f.slug === slug);
+  const index = findings.findIndex((f) => f.slug === slug);
+  const finding = findings[index];
   if (!finding) notFound();
+
+  const prev = index > 0 ? findings[index - 1] : null;
+  const next = index < findings.length - 1 ? findings[index + 1] : null;
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-20">
@@ -96,6 +100,31 @@ export default async function FindingDetailPage({
           </a>
         )}
       </section>
+
+      <div className="mt-16 flex items-start justify-between gap-4 border-t border-white/10 pt-8 text-sm">
+        {prev ? (
+          <Link
+            href={`/findings/${prev.slug}`}
+            className="group block max-w-[45%] text-neutral-500 hover:text-white"
+          >
+            <span className="block text-xs">&larr; Previous</span>
+            <span className="mt-1 block truncate group-hover:text-emerald-400">{prev.title}</span>
+          </Link>
+        ) : (
+          <span />
+        )}
+        {next ? (
+          <Link
+            href={`/findings/${next.slug}`}
+            className="group block max-w-[45%] text-right text-neutral-500 hover:text-white"
+          >
+            <span className="block text-xs">Next &rarr;</span>
+            <span className="mt-1 block truncate group-hover:text-emerald-400">{next.title}</span>
+          </Link>
+        ) : (
+          <span />
+        )}
+      </div>
     </div>
   );
 }

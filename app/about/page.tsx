@@ -47,6 +47,7 @@ export default function AboutPage() {
         <a
           href="https://github.com/godwin-web3/chainsentinel"
           target="_blank"
+          rel="noopener noreferrer"
           className="rounded-lg border border-white/15 px-5 py-2.5 text-sm font-medium text-white transition hover:border-white/30"
         >
           ChainSentinel on GitHub
@@ -54,6 +55,7 @@ export default function AboutPage() {
         <a
           href="https://github.com/godwin-web3"
           target="_blank"
+          rel="noopener noreferrer"
           className="rounded-lg border border-white/15 px-5 py-2.5 text-sm font-medium text-white transition hover:border-white/30"
         >
           GitHub Profile

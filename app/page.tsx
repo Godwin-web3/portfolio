@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { findings, stats } from "./lib/findings";
+import { findings, severityBreakdown, stats } from "./lib/findings";
 import FindingCard from "./components/FindingCard";
+import SeverityBreakdown from "./components/SeverityBreakdown";
 
 function pickFeatured(): typeof findings {
   const ranked = findings
@@ -32,6 +33,7 @@ export default function Home() {
             alt="GodwinXbt"
             width={64}
             height={64}
+            priority
             className="rounded-2xl border border-white/10"
           />
           <div>
@@ -80,6 +82,14 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Severity breakdown */}
+      <section className="mt-8 rounded-xl border border-white/10 bg-white/[0.02] p-6">
+        <p className="text-sm font-semibold text-white">Severity breakdown</p>
+        <div className="mt-5">
+          <SeverityBreakdown data={severityBreakdown} />
+        </div>
+      </section>
+
       {/* Featured findings */}
       <section className="py-20">
         <div className="flex items-end justify-between">
@@ -110,6 +120,7 @@ export default function Home() {
         <a
           href="https://github.com/godwin-web3/chainsentinel"
           target="_blank"
+          rel="noopener noreferrer"
           className="mt-5 inline-block text-sm font-medium text-emerald-400 hover:text-emerald-300"
         >
           Read the source &rarr;

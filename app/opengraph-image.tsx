@@ -24,6 +24,7 @@ export default function OpengraphImage() {
       >
         <img
           src={`data:image/jpeg;base64,${avatar}`}
+          alt=""
           width={220}
           height={220}
           style={{ borderRadius: 24, marginRight: 56 }}
