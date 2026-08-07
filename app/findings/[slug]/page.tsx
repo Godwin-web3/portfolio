@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { findings } from "../../lib/findings";
+import ChainIcon from "../../components/ChainIcon";
 import SeverityBadge from "../../components/SeverityBadge";
 
 export function generateStaticParams() {
@@ -43,8 +44,10 @@ export default async function FindingDetailPage({
 
       <div className="mt-6 flex items-start justify-between gap-4">
         <div className="min-w-0">
-          <p className="font-mono text-sm uppercase tracking-wide text-neutral-500">
-            {finding.protocol} · {finding.chain}
+          <p className="flex items-center gap-1.5 font-mono text-sm uppercase tracking-wide text-neutral-500">
+            {finding.protocol} ·
+            <ChainIcon chain={finding.chain} size={14} />
+            {finding.chain}
           </p>
           <h1 className="mt-2 break-words text-3xl font-semibold tracking-tight text-white">
             {finding.title}

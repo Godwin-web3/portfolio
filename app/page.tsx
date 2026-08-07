@@ -26,43 +26,49 @@ export default function Home() {
   return (
     <div className="mx-auto max-w-5xl px-6">
       {/* Hero */}
-      <section className="py-24">
-        <div className="flex items-center gap-4">
-          <Image
-            src="/avatar.jpg"
-            alt="GodwinXbt"
-            width={64}
-            height={64}
-            priority
-            className="rounded-2xl border border-white/10"
-          />
-          <div>
-            <p className="font-mono text-sm text-emerald-400">GodwinXbt</p>
-            <p className="text-sm text-neutral-500">Smart contract developer &amp; security researcher</p>
+      <section className="relative overflow-hidden py-24">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-emerald-500/10 blur-3xl"
+        />
+        <div className="relative">
+          <div className="flex items-center gap-4">
+            <Image
+              src="/avatar.jpg"
+              alt="GodwinXbt"
+              width={64}
+              height={64}
+              priority
+              className="rounded-2xl border border-white/10"
+            />
+            <div>
+              <p className="font-mono text-sm text-emerald-400">GodwinXbt</p>
+              <p className="text-sm text-neutral-500">Smart contract developer &amp; security researcher</p>
+            </div>
           </div>
-        </div>
-        <h1 className="mt-8 max-w-2xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-          I write smart contracts, then find what breaks them.
-        </h1>
-        <p className="mt-6 max-w-xl text-lg leading-relaxed text-neutral-400">
-          I&apos;m a smart contract developer and security researcher. I build and ship Solidity
-          systems, and I audit code with the same rigor I&apos;d want turned on my own — reading
-          real, deployed source, tracing root causes, and proving exploits with working
-          proofs-of-concept against forked mainnet state.
-        </p>
-        <div className="mt-8 flex flex-wrap gap-4">
-          <Link
-            href="/findings"
-            className="rounded-lg bg-emerald-500 px-5 py-2.5 text-sm font-medium text-black transition hover:bg-emerald-400"
-          >
-            View real findings
-          </Link>
-          <Link
-            href="/about"
-            className="rounded-lg border border-white/15 px-5 py-2.5 text-sm font-medium text-white transition hover:border-white/30"
-          >
-            About me
-          </Link>
+          <h1 className="mt-8 max-w-2xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+            I write smart contracts, then find what breaks them.
+          </h1>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-neutral-400">
+            I&apos;m a smart contract developer and security researcher. I build and ship Solidity
+            systems, and I audit code with the same rigor I&apos;d want turned on my own — reading
+            real, deployed source, tracing root causes, and proving exploits with working
+            proofs-of-concept against forked mainnet state.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <Link
+              href="/findings"
+              className="rounded-lg bg-emerald-500 px-5 py-2.5 text-sm font-medium text-black transition hover:bg-emerald-400"
+            >
+              View real findings
+            </Link>
+            <Link
+              href="/about"
+              className="rounded-lg border border-white/15 px-5 py-2.5 text-sm font-medium text-white transition hover:border-white/30"
+            >
+              About me
+            </Link>
+          </div>
         </div>
       </section>
 

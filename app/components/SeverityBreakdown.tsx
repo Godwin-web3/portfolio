@@ -5,7 +5,7 @@ const barColors: Record<Severity, string> = {
   High: "bg-orange-500",
   Medium: "bg-yellow-500",
   Low: "bg-blue-500",
-  Informational: "bg-neutral-500",
+  Informational: "bg-neutral-300",
 };
 
 export default function SeverityBreakdown({

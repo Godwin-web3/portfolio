@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ChainIcon from "../components/ChainIcon";
 import FindingCard from "../components/FindingCard";
 import type { ProtocolGroup, Severity } from "../lib/findings";
 
@@ -99,8 +100,13 @@ export default function FindingsExplorer({ groups }: { groups: ProtocolGroup[] }
           <section key={group.protocol}>
             <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b border-white/10 pb-3">
               <h2 className="text-lg font-semibold text-white">{group.protocol}</h2>
-              <span className="font-mono text-xs uppercase tracking-wide text-neutral-500">
-                {Array.from(new Set(group.findings.map((f) => f.chain))).join(" / ")}
+              <span className="flex items-center gap-2 font-mono text-xs uppercase tracking-wide text-neutral-500">
+                {Array.from(new Set(group.findings.map((f) => f.chain))).map((c) => (
+                  <span key={c} className="flex items-center gap-1">
+                    <ChainIcon chain={c} size={12} />
+                    {c}
+                  </span>
+                ))}
               </span>
               <span className="text-xs text-neutral-500">
                 {group.findings.length} finding{group.findings.length === 1 ? "" : "s"}
