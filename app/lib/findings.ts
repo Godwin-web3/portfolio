@@ -284,6 +284,25 @@ export const findings: Finding[] = [
     pocUrl: `${CS_BRANCH}/test/Exploit_Orvex_BveORVX_ExerciseVe_ABIMismatch.t.sol`,
   },
   {
+    slug: "panoptic-collateraltracker-stale-liquidation",
+    protocol: "Panoptic V2",
+    title:
+      "CollateralTracker.assetsAndInterest() stale/fresh accounting mismatch enables wrongful liquidation",
+    severity: "Medium",
+    status:
+      "Confirmed with working PoC - not currently exploitable (no live victim under current usage)",
+    chain: "Ethereum",
+    summary:
+      "RiskEngine._getMargin() calls CollateralTracker.assetsAndInterest(), which pairs a stale, stored collateral valuation (totalAssets() includes s_marketState.unrealizedInterest(), only refreshed by the next accrual-triggering call) against a freshly-simulated debt figure. dispatchFrom() never forces accrual before this eligibility check, so a position that is genuinely solvent under same-basis fresh accounting can be judged insolvent and liquidated.",
+    rootCause:
+      "convertToAssets(balanceOf[owner]) and _owedInterest(owner) - the two halves of the same solvency comparison - are computed on different time bases, and neither dispatchFrom() nor _liquidate() calls an accrual step before deciding eligibility.",
+    verification:
+      "Identical-snapshot A/B against the real deployed ETH/USDC PanopticPool on a mainnet fork: (A) stale dispatchFrom() liquidates a genuinely-solvent naked short-call position; (B) reverting to the identical state and calling accrueInterest() first makes the same position solvent and the liquidation revert - isolating staleness as the sole cause. Strongest tested configuration: 34.55 ETH victim loss, of which 13.48 ETH (39%) was captured directly by the triggering liquidator - an unrelated address with zero prior position - at zero capital cost, paid as CollateralTracker shares via the standard liquidation-bonus transfer branch (confirmed non-dilutive: totalSupply() decreased, not increased). A dedicated follow-up bisection found the shortest reproducible stale window is ~370 days at the protocol's own thinnest mintable margin, and real on-chain interaction frequency on the live CollateralTracker (multiple times per week) makes that precondition unlikely to currently hold.",
+    address: "0x00000000563b70d704f4C6675a5f6Ac989FbAe13",
+    tags: ["accounting", "liquidation", "stale state"],
+    verifiedLive: true,
+  },
+  {
     slug: "orvex-minter-broken-initialize-latch",
     protocol: "Orvex",
     title: "MinterUpgradeableV3._initialize() one-time latch never actually latches",
