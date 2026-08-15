@@ -301,6 +301,7 @@ export const findings: Finding[] = [
     address: "0x00000000563b70d704f4C6675a5f6Ac989FbAe13",
     tags: ["accounting", "liquidation", "stale state"],
     verifiedLive: true,
+    pocUrl: `${CS_BRANCH}/test/Exploit_Panoptic_CollateralTracker_StaleLiquidation.t.sol`,
   },
   {
     slug: "orvex-minter-broken-initialize-latch",
