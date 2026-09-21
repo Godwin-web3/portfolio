@@ -18,8 +18,8 @@ export default function OpengraphImage() {
           display: "flex",
           alignItems: "center",
           padding: "80px",
-          background: "#0a0a0a",
-          color: "#fff",
+          background: "#0c0b09",
+          color: "#f3efe6",
         }}
       >
         <img
@@ -30,8 +30,8 @@ export default function OpengraphImage() {
           style={{ borderRadius: 24, marginRight: 56 }}
         />
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ display: "flex", fontFamily: "monospace", fontSize: 28, color: "#34d399" }}>
-            godwin<span style={{ color: "#fff" }}>.xbt</span>
+          <div style={{ display: "flex", fontFamily: "monospace", fontSize: 28, color: "#e07a4c" }}>
+            godwin<span style={{ color: "#f3efe6" }}>.xbt</span>
           </div>
           <div
             style={{
@@ -43,15 +43,12 @@ export default function OpengraphImage() {
               maxWidth: 780,
             }}
           >
-            Smart Contract Auditor @ SMC Audits.
+            I ship products. Then I break them on purpose.
           </div>
-          <div style={{ display: "flex", marginTop: 12, fontSize: 26, color: "#a3a3a3" }}>
-            Builder &amp; security researcher
-          </div>
-          <div style={{ display: "flex", marginTop: 28, gap: 40, fontSize: 24, color: "#a3a3a3" }}>
-            <div style={{ display: "flex" }}>{stats.totalFindings} real findings</div>
-            <div style={{ display: "flex" }}>{stats.protocols} protocols audited</div>
-            <div style={{ display: "flex" }}>{stats.criticalOrHigh} critical/high</div>
+          <div style={{ display: "flex", marginTop: 32, gap: 28, fontSize: 24, color: "#b7b0a4" }}>
+            <div style={{ display: "flex" }}>Full-stack builder</div>
+            <div style={{ display: "flex" }}>Auditor @ SMC Audits</div>
+            <div style={{ display: "flex" }}>{stats.totalFindings} findings</div>
           </div>
         </div>
       </div>

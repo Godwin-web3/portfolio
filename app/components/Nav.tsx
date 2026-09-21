@@ -4,29 +4,30 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const links = [
-  { href: "/", label: "Home" },
+  { href: "/#work", label: "Work" },
   { href: "/findings", label: "Findings" },
   { href: "/about", label: "About" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export default function Nav() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#0a0a0a]/80 backdrop-blur">
-      <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <Link href="/" className="font-mono text-sm font-semibold tracking-tight text-white">
-          godwin<span className="text-emerald-400">.xbt</span>
+    <header className="sticky top-0 z-50 border-b border-paper/10 bg-ink/85 backdrop-blur">
+      <nav className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-5 py-4 sm:px-6">
+        <Link href="/" className="font-mono text-sm font-semibold tracking-tight text-paper">
+          godwin<span className="text-copper">.xbt</span>
         </Link>
-        <ul className="flex items-center gap-6 text-sm text-neutral-400">
+        <ul className="flex flex-wrap items-center justify-end gap-x-4 gap-y-1 text-sm text-mute sm:gap-x-6">
           {links.map((l) => {
-            const isActive = l.href === "/" ? pathname === "/" : pathname.startsWith(l.href);
+            const isActive = l.href.startsWith("/#") ? false : pathname.startsWith(l.href);
             return (
               <li key={l.href}>
                 <Link
                   href={l.href}
                   aria-current={isActive ? "page" : undefined}
-                  className={`transition hover:text-white ${isActive ? "text-emerald-400" : ""}`}
+                  className={`transition hover:text-paper ${isActive ? "text-copper" : ""}`}
                 >
                   {l.label}
                 </Link>

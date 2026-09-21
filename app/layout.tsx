@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import Nav from "./components/Nav";
@@ -8,20 +8,22 @@ import Footer from "./components/Footer";
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "GodwinXbt",
+  name: "Godwin Mbah",
+  alternateName: "GodwinXbt",
   url: "https://godwinxbt.vercel.app",
-  jobTitle: "Smart Contract Auditor",
+  jobTitle: "Full-stack builder and Smart Contract Auditor",
+  description:
+    "Full-stack builder who ships live on-chain products. Smart Contract Auditor at SMC Audits.",
+  email: "mailto:godwinxbt@gmail.com",
   worksFor: {
     "@type": "Organization",
     name: "SMC Audits",
     legalName: "Sir Mapy & Co Limited",
   },
-  description:
-    "Smart Contract Auditor at SMC Audits. Independent builder and security researcher. Builder of ChainSentinel and Blast Radius.",
   sameAs: [
     "https://x.com/GodwinXbt",
     "https://t.me/GodwinXbt",
-    "https://github.com/godwin-web3",
+    "https://github.com/Godwin-web3",
   ],
 };
 
@@ -35,20 +37,46 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const instrument = Instrument_Serif({
+  variable: "--font-instrument",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+});
+
+const title = "Godwin Mbah — full-stack builder & smart contract auditor";
+const description =
+  "I build cool shit on-chain, then break it on purpose. Live products: Blast Radius, Folio, Keel, Assay, Paidline, NoGhosts. Smart Contract Auditor @ SMC Audits.";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://godwinxbt.vercel.app"),
-  title: "GodwinXbt — Smart Contract Auditor @ SMC Audits",
-  description:
-    "Smart Contract Auditor at SMC Audits, and an independent builder and security researcher. Builder of ChainSentinel. Real findings, real proof, no inflated numbers.",
+  title: {
+    default: title,
+    template: "%s · Godwin Mbah",
+  },
+  description,
+  openGraph: {
+    title,
+    description,
+    url: "https://godwinxbt.vercel.app",
+    siteName: "Godwin Mbah",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    creator: "@GodwinXbt",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${instrument.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#0a0a0a] text-neutral-200">
+      <body className="flex min-h-full flex-col bg-ink font-sans text-paper">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}

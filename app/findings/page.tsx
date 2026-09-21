@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { groupedByProtocol, stats } from "../lib/findings";
 import FindingsExplorer from "./FindingsExplorer";
 
 export const metadata: Metadata = {
-  title: "Findings — Godwin",
+  title: "Findings",
   description: "Real, verified smart contract security findings across live protocols.",
 };
 
@@ -15,7 +16,11 @@ export default function FindingsPage() {
         {stats.totalFindings} findings across {stats.protocols} protocols
       </h1>
       <p className="mt-4 max-w-2xl text-neutral-400">
-        Every entry here has a working proof-of-concept or an independently traced root cause
+        Selected work lives on the{" "}
+        <Link href="/#work" className="text-neutral-200 underline underline-offset-4 hover:text-white">
+          homepage
+        </Link>
+        . Every entry here has a working proof-of-concept or an independently traced root cause
         against real, live source and, where possible, forked mainnet state. Severity and status
         are reported as found — including the ones that turned out not to be exploitable in
         practice.

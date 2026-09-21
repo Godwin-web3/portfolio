@@ -1,20 +1,21 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 py-10 text-center text-sm text-neutral-500">
-      <p>
-        Findings on this site are verified with{" "}
+    <footer className="border-t border-paper/10 py-10 text-center text-sm text-mute">
+      <p>Godwin Mbah · remote. Products first. Findings are the receipts.</p>
+      <p className="mt-2 text-xs">
+        Findings checked with{" "}
         <a
           href="https://github.com/godwin-web3/chainsentinel"
-          className="text-neutral-300 underline underline-offset-4 hover:text-white"
+          className="text-paper underline underline-offset-4 hover:text-white"
           target="_blank"
           rel="noopener noreferrer"
         >
           ChainSentinel
         </a>
-        , my own audit tool, as its own proof of work.
+        .
       </p>
       <div className="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs">
-        <a href="mailto:godwinxbt@gmail.com" className="-m-2 rounded-md p-2 transition hover:text-white">
+        <a href="mailto:godwinxbt@gmail.com" className="-m-2 rounded-md p-2 transition hover:text-paper">
           Email
         </a>
 
@@ -23,7 +24,7 @@ export default function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="X"
-          className="-m-2 rounded-md p-2 transition hover:text-white"
+          className="-m-2 rounded-md p-2 transition hover:text-paper"
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="inline-block h-5 w-5">
             <title>X</title>
@@ -36,7 +37,7 @@ export default function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Telegram"
-          className="-m-2 rounded-md p-2 transition hover:text-white"
+          className="-m-2 rounded-md p-2 transition hover:text-paper"
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="inline-block h-5 w-5">
             <title>Telegram</title>
@@ -45,11 +46,11 @@ export default function Footer() {
         </a>
 
         <a
-          href="https://github.com/godwin-web3"
+          href="https://github.com/Godwin-web3"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub"
-          className="-m-2 rounded-md p-2 transition hover:text-white"
+          className="-m-2 rounded-md p-2 transition hover:text-paper"
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="inline-block h-5 w-5">
             <title>GitHub</title>
