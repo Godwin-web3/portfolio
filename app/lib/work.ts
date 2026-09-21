@@ -8,6 +8,8 @@ export type Work = {
   tags: string[];
   live: string;
   github: string;
+  /** Scale a sparse screenshot so the product UI fills the card. */
+  zoom?: number;
 };
 
 export const works: Work[] = [
@@ -46,6 +48,7 @@ export const works: Work[] = [
     tags: ["Next.js", "Solidity", "TypeScript"],
     live: "https://keel-black-phi.vercel.app",
     github: "https://github.com/Godwin-web3/keel",
+    zoom: 2.2,
   },
   {
     title: "Assay",
@@ -61,8 +64,7 @@ export const works: Work[] = [
   },
   {
     title: "Paidline",
-    blurb:
-      "Invoice in. USDC across. Creditcoin settles it. A status page for the payment, not a pitch deck.",
+    blurb: "Invoice in. USDC across. Creditcoin settles it. A status page for the payment.",
     image: "/work/paidline.png",
     width: 1440,
     height: 900,
@@ -70,6 +72,7 @@ export const works: Work[] = [
     tags: ["Next.js", "Solidity", "USDC"],
     live: "https://paidline.vercel.app",
     github: "https://github.com/Godwin-web3/paidline",
+    zoom: 2.2,
   },
   {
     title: "NoGhosts / Berth",

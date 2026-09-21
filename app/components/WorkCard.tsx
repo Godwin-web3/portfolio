@@ -17,19 +17,25 @@ export default function WorkCard({ work, index, featured = false, priority = fal
         <div
           className={
             featured
-              ? "border-b border-paper/10 bg-ink lg:border-b-0 lg:border-r"
-              : "border-b border-paper/10 bg-ink"
+              ? "relative aspect-[16/10] overflow-hidden border-b border-paper/10 bg-ink lg:border-b-0 lg:border-r"
+              : "relative aspect-[16/10] overflow-hidden border-b border-paper/10 bg-ink"
           }
         >
           <Image
             src={work.image}
             alt={work.alt}
-            width={work.width}
-            height={work.height}
+            fill
             priority={priority}
             quality={90}
-            sizes={featured ? "(min-width: 1024px) 720px, 100vw" : "(min-width: 640px) 50vw, 100vw"}
-            className="h-auto w-full"
+            sizes={
+              work.zoom
+                ? "(min-width: 640px) 1400px, 100vw"
+                : featured
+                  ? "(min-width: 1024px) 960px, 100vw"
+                  : "(min-width: 640px) 640px, 100vw"
+            }
+            className="object-cover"
+            style={work.zoom ? { transform: `scale(${work.zoom})` } : undefined}
           />
         </div>
         <div className="flex flex-col p-5 sm:p-6 lg:justify-center lg:p-8">
