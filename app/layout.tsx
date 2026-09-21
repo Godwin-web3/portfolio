@@ -11,9 +11,9 @@ const personJsonLd = {
   name: "Godwin Mbah",
   alternateName: "GodwinXbt",
   url: "https://godwinxbt.vercel.app",
-  jobTitle: "Full-stack builder and Smart Contract Auditor",
+  jobTitle: "Smart Contract Auditor and on-chain researcher",
   description:
-    "Full-stack builder who ships live on-chain products. Smart Contract Auditor at SMC Audits.",
+    "Studies protocols, settlement paths, and accounting failures. Smart Contract Auditor at SMC Audits.",
   email: "mailto:godwinxbt@gmail.com",
   worksFor: {
     "@type": "Organization",
@@ -44,9 +44,9 @@ const instrument = Instrument_Serif({
   style: ["normal", "italic"],
 });
 
-const title = "Godwin Mbah — full-stack builder & smart contract auditor";
+const title = "Godwin Mbah — smart contract auditor & on-chain researcher";
 const description =
-  "I build cool shit on-chain, then break it on purpose. Live products: Blast Radius, Folio, Keel, Assay, Paidline, NoGhosts. Smart Contract Auditor @ SMC Audits.";
+  "A protocol can look safe on the dashboard and still fail in its accounting. Findings with working PoCs. Live tools for approvals, settlement, and token verification.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://godwinxbt.vercel.app"),
