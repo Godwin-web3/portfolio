@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { findings } from "../../lib/findings";
 import { explorerUrl } from "../../lib/explorers";
+import { profileFindingUrl } from "../../lib/pocs";
 import ChainIcon from "../../components/ChainIcon";
 import SeverityBadge from "../../components/SeverityBadge";
 
@@ -89,11 +90,14 @@ export default async function FindingDetailPage({
             ? "Verified against real, live deployed contract state."
             : "Verified against real source code, not live deployed on this chain."}
         </p>
-        {finding.pocUrl ? (
-          <a href={finding.pocUrl} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-paper underline decoration-copper/70 underline-offset-4 hover:decoration-copper">
-            View the Foundry PoC
-          </a>
-        ) : null}
+        <a
+          href={profileFindingUrl(finding.slug)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-paper underline decoration-copper/70 underline-offset-4 hover:decoration-copper"
+        >
+          Receipt on GitHub
+        </a>
       </section>
       <div className="mt-16 flex items-start justify-between gap-4 border-t border-paper/10 pt-8 text-sm">
         {prev ? (
