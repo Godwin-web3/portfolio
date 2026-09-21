@@ -54,53 +54,40 @@ export default function FindingsExplorer({ groups }: { groups: ProtocolGroup[] }
             aria-pressed={activeSeverities.has(s)}
             className={`rounded-full border px-3 py-1 text-xs font-medium transition ${
               activeSeverities.has(s)
-                ? "border-emerald-400/50 bg-emerald-500/10 text-emerald-300"
-                : "border-white/10 text-neutral-400 hover:border-white/25 hover:text-white"
+                ? "border-copper/50 bg-copper/10 text-paper"
+                : "border-paper/15 text-mute hover:border-paper/40 hover:text-paper"
             }`}
           >
             {s}
           </button>
         ))}
-
-        <span className="mx-1 h-4 w-px bg-white/10" aria-hidden />
-
+        <span className="mx-1 h-4 w-px bg-paper/10" aria-hidden />
         <select
           value={activeChain ?? ""}
           onChange={(e) => setActiveChain(e.target.value || null)}
           aria-label="Filter by chain"
-          className="rounded-full border border-white/10 bg-transparent px-3 py-1 text-xs font-medium text-neutral-400 transition hover:border-white/25 hover:text-white"
+          className="rounded-full border border-paper/15 bg-ink px-3 py-1 text-xs font-medium text-mute transition hover:border-paper/40 hover:text-paper"
         >
-          <option value="" className="bg-[#0a0a0a]">
-            All chains
-          </option>
+          <option value="" className="bg-ink">All chains</option>
           {chains.map((c) => (
-            <option key={c} value={c} className="bg-[#0a0a0a]">
-              {c}
-            </option>
+            <option key={c} value={c} className="bg-ink">{c}</option>
           ))}
         </select>
-
         {hasFilters && (
-          <button
-            type="button"
-            onClick={clearFilters}
-            className="rounded-full px-3 py-1 text-xs font-medium text-neutral-500 underline underline-offset-4 hover:text-white"
-          >
+          <button type="button" onClick={clearFilters} className="rounded-full px-3 py-1 text-xs font-medium text-mute underline underline-offset-4 hover:text-paper">
             Clear filters
           </button>
         )}
       </div>
-
-      <p className="mt-4 text-xs text-neutral-500">
+      <p className="mt-4 font-mono text-[11px] uppercase tracking-wider text-mute">
         Showing {shownCount} of {allFindings.length} finding{allFindings.length === 1 ? "" : "s"}
       </p>
-
       <div className="mt-8 space-y-14">
         {filteredGroups.map((group) => (
           <section key={group.protocol}>
-            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b border-white/10 pb-3">
-              <h2 className="text-lg font-semibold text-white">{group.protocol}</h2>
-              <span className="flex items-center gap-2 font-mono text-xs uppercase tracking-wide text-neutral-500">
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b border-paper/10 pb-3">
+              <h2 className="font-serif text-xl text-paper">{group.protocol}</h2>
+              <span className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-wide text-mute">
                 {Array.from(new Set(group.findings.map((f) => f.chain))).map((c) => (
                   <span key={c} className="flex items-center gap-1">
                     <ChainIcon chain={c} size={12} />
@@ -108,7 +95,7 @@ export default function FindingsExplorer({ groups }: { groups: ProtocolGroup[] }
                   </span>
                 ))}
               </span>
-              <span className="text-xs text-neutral-500">
+              <span className="text-xs text-mute">
                 {group.findings.length} finding{group.findings.length === 1 ? "" : "s"}
               </span>
             </div>
@@ -119,9 +106,8 @@ export default function FindingsExplorer({ groups }: { groups: ProtocolGroup[] }
             </div>
           </section>
         ))}
-
         {filteredGroups.length === 0 && (
-          <p className="rounded-xl border border-white/10 bg-white/[0.02] p-8 text-center text-sm text-neutral-500">
+          <p className="rounded-xl border border-paper/12 bg-card p-8 text-center text-sm text-mute">
             No findings match these filters.
           </p>
         )}
