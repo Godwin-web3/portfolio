@@ -18,7 +18,7 @@ export async function generateMetadata({
   const finding = findings.find((f) => f.slug === slug);
   if (!finding) return {};
   return {
-    title: `${finding.title} — Godwin`,
+    title: finding.title,
     description: finding.summary,
   };
 }

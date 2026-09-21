@@ -1,4 +1,4 @@
-Personal portfolio of Godwin Mbah (GodwinXbt) — Smart Contract Auditor at SMC Audits, and an independent builder and security researcher.
+Personal portfolio of Godwin Mbah (GodwinXbt) — full-stack builder who ships live products, and Smart Contract Auditor at SMC Audits.
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
