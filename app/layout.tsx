@@ -10,7 +10,14 @@ const personJsonLd = {
   "@type": "Person",
   name: "GodwinXbt",
   url: "https://godwinxbt.vercel.app",
-  jobTitle: "Smart Contract Developer & Security Researcher",
+  jobTitle: "Smart Contract Auditor",
+  worksFor: {
+    "@type": "Organization",
+    name: "SMC Audits",
+    legalName: "Sir Mapy & Co Limited",
+  },
+  description:
+    "Smart Contract Auditor at SMC Audits. Independent builder and security researcher. Builder of ChainSentinel and Blast Radius.",
   sameAs: [
     "https://x.com/GodwinXbt",
     "https://t.me/GodwinXbt",
@@ -30,9 +37,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://godwinxbt.vercel.app"),
-  title: "GodwinXbt — Smart Contract Developer & Security Researcher",
+  title: "GodwinXbt — Smart Contract Auditor @ SMC Audits",
   description:
-    "Smart contract developer and security researcher. Builder of ChainSentinel, my AI-augmented audit tool. Real findings, real proof, no inflated numbers.",
+    "Smart Contract Auditor at SMC Audits, and an independent builder and security researcher. Builder of ChainSentinel. Real findings, real proof, no inflated numbers.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

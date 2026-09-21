@@ -43,9 +43,12 @@ export default function OpengraphImage() {
               maxWidth: 780,
             }}
           >
-            Smart contract developer &amp; security researcher.
+            Smart Contract Auditor @ SMC Audits.
           </div>
-          <div style={{ display: "flex", marginTop: 32, gap: 40, fontSize: 24, color: "#a3a3a3" }}>
+          <div style={{ display: "flex", marginTop: 12, fontSize: 26, color: "#a3a3a3" }}>
+            Builder &amp; security researcher
+          </div>
+          <div style={{ display: "flex", marginTop: 28, gap: 40, fontSize: 24, color: "#a3a3a3" }}>
             <div style={{ display: "flex" }}>{stats.totalFindings} real findings</div>
             <div style={{ display: "flex" }}>{stats.protocols} protocols audited</div>
             <div style={{ display: "flex" }}>{stats.criticalOrHigh} critical/high</div>
