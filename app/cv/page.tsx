@@ -2,48 +2,162 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import PrintButton from "./PrintButton";
 
+type EngagementType = "Independent" | "Bounty" | "Private";
+
+type Engagement = {
+  protocol: string;
+  chain: string;
+  type: EngagementType;
+  disclosed: string;
+  findings: string;
+  href: string;
+};
+
 export const metadata: Metadata = {
   title: "CV",
   description:
-    "GodwinXbt — software engineer and protocol researcher. Financial systems, payments, infrastructure, security.",
+    "GodwinXbt — security researcher. Independent, deployment-aware protocol research with public writeups.",
 };
 
-const work = [
+const engagements: Engagement[] = [
   {
-    name: "Ragnarok",
-    href: "https://github.com/Godwin-web3/ragnarok",
-    line: "Adversarial research infrastructure for proving economically meaningful protocol failures.",
+    protocol: "lemon.fun",
+    chain: "Robinhood Chain",
+    type: "Independent",
+    disclosed: "Responsible disclosure · public writeup",
+    findings: "1 Critical",
+    href: "/findings/lemon-fun-bonding-curve-theft",
   },
   {
-    name: "Themis",
-    href: "https://github.com/Godwin-web3/themis",
-    line: "Runtime invariant monitoring with multi-RPC quorum and reorg-aware validation.",
+    protocol: "Noon (USN)",
+    chain: "Ethereum",
+    type: "Independent",
+    disclosed: "Responsible disclosure · public writeup",
+    findings: "2 Critical",
+    href: "/findings/noon-redeemhandler-unratiod-drain",
   },
   {
-    name: "AgentPay",
-    href: "https://github.com/Godwin-web3/AgentPay",
-    line: "Policy-controlled autonomous payments. Decision off-chain, permission on-chain.",
+    protocol: "Flex Finance",
+    chain: "Ethereum",
+    type: "Independent",
+    disclosed: "Responsible disclosure · public writeup",
+    findings: "2 High",
+    href: "/findings/flex-lender-auction-self-deal",
   },
   {
-    name: "Paidline",
-    href: "https://github.com/Godwin-web3/paidline",
-    line: "Payment and settlement infrastructure for programmable financial flows.",
+    protocol: "Hydrex",
+    chain: "Ethereum",
+    type: "Independent",
+    disclosed: "Responsible disclosure · public writeup",
+    findings: "1 High",
+    href: "/findings/hydrex-minter-initializer-noop",
   },
   {
-    name: "Oracle Integrity Monitor",
-    href: "https://github.com/Godwin-web3/oracle-integrity-monitor",
-    line: "Detect inconsistent, stale, or manipulated protocol data.",
+    protocol: "Ripe Protocol",
+    chain: "Base",
+    type: "Independent",
+    disclosed: "Responsible disclosure · public writeup",
+    findings: "1 High",
+    href: "/findings/ripe-sequencer-uptime",
   },
   {
-    name: "Keel",
-    href: "https://github.com/Godwin-web3/keel",
-    line: "Commit-reveal primitive for event contracts.",
+    protocol: "Orvex",
+    chain: "Robinhood Chain",
+    type: "Independent",
+    disclosed: "Responsible disclosure · public writeup",
+    findings: "2 High · 3 Medium",
+    href: "/findings/orvex-voterv5-stale-reward-index",
+  },
+  {
+    protocol: "Ellipsis Finance",
+    chain: "BSC",
+    type: "Independent",
+    disclosed: "Responsible disclosure · public writeup",
+    findings: "1 Medium",
+    href: "/findings/ellipsis-incentivevoting-reentrancy",
+  },
+  {
+    protocol: "HyperFX",
+    chain: "Ethereum",
+    type: "Independent",
+    disclosed: "Responsible disclosure · public writeup",
+    findings: "1 Medium",
+    href: "/findings/hyperfx-calldispatcher-drain",
+  },
+  {
+    protocol: "Monolith Market",
+    chain: "Ethereum",
+    type: "Independent",
+    disclosed: "Responsible disclosure · public writeup",
+    findings: "1 Medium",
+    href: "/findings/monolith-phantom-collateral",
+  },
+  {
+    protocol: "Panoptic V2",
+    chain: "Ethereum",
+    type: "Independent",
+    disclosed: "Responsible disclosure · public writeup",
+    findings: "1 Medium",
+    href: "/findings/panoptic-collateraltracker-stale-liquidation",
+  },
+  {
+    protocol: "Ramses DLMM",
+    chain: "Robinhood Chain",
+    type: "Independent",
+    disclosed: "Responsible disclosure · public writeup",
+    findings: "1 Informational",
+    href: "/findings/ramses-dlmm-composition-fee",
+  },
+];
+
+const selected = [
+  {
+    protocol: "lemon.fun",
+    chain: "Robinhood Chain",
+    sev: "Critical",
+    title: "Legacy bonding curve. Total buyer-fund theft.",
+    href: "/findings/lemon-fun-bonding-curve-theft",
+  },
+  {
+    protocol: "Noon",
+    chain: "Ethereum",
+    sev: "Critical",
+    title: "Unratiod redeem and uncollateralized self-mint.",
+    href: "/findings/noon-redeemhandler-unratiod-drain",
+  },
+  {
+    protocol: "Flex",
+    chain: "Ethereum",
+    sev: "High",
+    title: "Auction self-deal on lender and borrower paths.",
+    href: "/findings/flex-lender-auction-self-deal",
+  },
+  {
+    protocol: "Hydrex",
+    chain: "Ethereum",
+    sev: "High",
+    title: "One-time initializer guard never latches.",
+    href: "/findings/hydrex-minter-initializer-noop",
+  },
+  {
+    protocol: "Orvex",
+    chain: "Robinhood Chain",
+    sev: "High",
+    title: "Stale reward index and a missing token burn path.",
+    href: "/findings/orvex-voterv5-stale-reward-index",
+  },
+  {
+    protocol: "Ripe",
+    chain: "Base",
+    sev: "High",
+    title: "No L2 sequencer uptime check on Chainlink prices.",
+    href: "/findings/ripe-sequencer-uptime",
   },
 ];
 
 export default function CVPage() {
   return (
-    <div className="mx-auto max-w-3xl px-5 py-16 sm:px-6 sm:py-20 print:max-w-none print:px-0 print:py-0">
+    <div className="mx-auto max-w-4xl px-5 py-16 sm:px-6 sm:py-20 print:max-w-none print:px-0 print:py-0">
       <div className="flex flex-wrap items-start justify-between gap-4 print:hidden">
         <div>
           <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">CV</p>
@@ -56,90 +170,116 @@ export default function CVPage() {
         <h1 className="font-serif text-4xl text-black">GodwinXbt</h1>
       </header>
 
-      <p className="mt-4 text-sm leading-relaxed text-mute print:mt-2 print:text-neutral-700">
-        Software engineer and protocol researcher. I build financial and distributed
-        systems, and I use security research to understand whether they actually behave
-        as designed.
+      <p className="mt-3 font-mono text-[11px] uppercase tracking-wider text-mute print:text-neutral-600">
+        Security researcher · Protocol researcher · Engineer
       </p>
 
-      <p className="mt-4 font-mono text-[11px] uppercase tracking-wider text-mute print:text-neutral-600">
-        Software · Protocols · Payments · Infrastructure · Security
+      <p className="mt-4 max-w-2xl text-sm leading-relaxed text-mute print:text-neutral-700">
+        Independent, deployment-aware security research on live financial protocols.
+        Source to deployment. Economic analysis. Executable PoCs. Falsification when
+        the path does not pay. Findings are disclosed and published.
       </p>
 
       <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 font-mono text-[11px] text-mute print:text-neutral-700">
         <li><a href="mailto:godwinxbt@gmail.com" className="hover:text-paper print:text-black">godwinxbt@gmail.com</a></li>
-        <li><a href="https://godwinxbt.vercel.app" className="hover:text-paper print:text-black">godwinxbt.vercel.app</a></li>
-        <li><a href="https://github.com/Godwin-web3" className="hover:text-paper print:text-black">github.com/Godwin-web3</a></li>
-        <li><a href="https://x.com/GodwinXbt" className="hover:text-paper print:text-black">x.com/GodwinXbt</a></li>
-        <li><a href="https://t.me/GodwinXbt" className="hover:text-paper print:text-black">t.me/GodwinXbt</a></li>
+        <li><a href="https://godwinxbt.vercel.app/research" className="hover:text-paper print:text-black">Research</a></li>
+        <li><a href="https://github.com/Godwin-web3/Godwin-web3/blob/main/FINDINGS.md" className="hover:text-paper print:text-black">Findings index</a></li>
+        <li><a href="https://github.com/Godwin-web3" className="hover:text-paper print:text-black">GitHub</a></li>
+        <li><a href="https://x.com/GodwinXbt" className="hover:text-paper print:text-black">X</a></li>
       </ul>
 
       <section className="mt-12 print:mt-8">
-        <h2 className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent print:text-black">Focus</h2>
-        <ul className="mt-3 space-y-1 text-sm text-mute print:text-neutral-800">
-          <li>Financial systems and payment infrastructure</li>
-          <li>EVM and blockchain systems</li>
-          <li>Backend and developer tooling</li>
-          <li>Protocol design and mechanism research</li>
-          <li>Monitoring, observability, and invariants</li>
-          <li>Security engineering and adversarial testing</li>
-        </ul>
+        <h2 className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent print:text-black">Proof</h2>
+        <p className="mt-3 text-sm text-paper print:text-black">
+          17 documented findings · 11 protocols · Ethereum, Base, BSC, Robinhood Chain
+        </p>
+        <p className="mt-2 text-sm text-mute print:text-neutral-700">
+          3 Critical · 6 High · 7 Medium · 1 Informational
+        </p>
       </section>
 
       <section className="mt-12 print:mt-8">
-        <h2 className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent print:text-black">Selected work</h2>
-        <ul className="mt-4 space-y-5">
-          {work.map((item) => (
-            <li key={item.name}>
-              <a href={item.href} className="font-medium text-paper hover:text-accent print:text-black print:no-underline">
-                {item.name}
-              </a>
-              <p className="mt-1 text-sm leading-relaxed text-mute print:text-neutral-700">{item.line}</p>
+        <h2 className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent print:text-black">
+          Security engagements
+        </h2>
+        <p className="mt-3 text-sm text-mute print:text-neutral-700">
+          Independent research on deployed contracts. Not a retained audit roster.
+          Type is the engagement model. Disclosure is public writeup after responsible handling.
+        </p>
+        <div className="mt-5 overflow-x-auto">
+          <table className="w-full min-w-[640px] border-collapse text-left text-sm">
+            <thead>
+              <tr className="border-b border-line font-mono text-[11px] uppercase tracking-wider text-mute print:border-neutral-300 print:text-neutral-600">
+                <th className="py-2 pr-3 font-normal">Protocol</th>
+                <th className="py-2 pr-3 font-normal">Chain</th>
+                <th className="py-2 pr-3 font-normal">Type</th>
+                <th className="py-2 pr-3 font-normal">Findings</th>
+                <th className="py-2 font-normal">Disclosure</th>
+              </tr>
+            </thead>
+            <tbody>
+              {engagements.map((row) => (
+                <tr key={row.protocol} className="border-b border-line/80 print:border-neutral-200">
+                  <td className="py-2.5 pr-3 text-paper print:text-black">
+                    <Link href={row.href} className="hover:text-accent print:text-black print:no-underline">
+                      {row.protocol}
+                    </Link>
+                  </td>
+                  <td className="py-2.5 pr-3 text-mute print:text-neutral-700">{row.chain}</td>
+                  <td className="py-2.5 pr-3 text-mute print:text-neutral-700">{row.type}</td>
+                  <td className="py-2.5 pr-3 text-mute print:text-neutral-700">{row.findings}</td>
+                  <td className="py-2.5 text-mute print:text-neutral-700">{row.disclosed}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="mt-12 print:mt-8">
+        <h2 className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent print:text-black">
+          Selected investigations
+        </h2>
+        <ul className="mt-4 space-y-4">
+          {selected.map((item) => (
+            <li key={item.href}>
+              <Link href={item.href} className="text-paper hover:text-accent print:text-black print:no-underline">
+                {item.protocol} · {item.sev}
+              </Link>
+              <p className="mt-1 text-sm text-mute print:text-neutral-700">
+                {item.chain}. {item.title}
+              </p>
             </li>
           ))}
         </ul>
+        <p className="mt-5 font-mono text-[11px] text-mute print:text-neutral-700">
+          <Link href="/research" className="hover:text-paper print:text-black">All research</Link>
+          {" · "}
+          <Link href="/findings" className="hover:text-paper print:text-black">Full findings</Link>
+        </p>
       </section>
 
       <section className="mt-12 print:mt-8">
-        <h2 className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent print:text-black">Research</h2>
+        <h2 className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent print:text-black">Method</h2>
+        <ul className="mt-3 space-y-1 text-sm text-mute print:text-neutral-800">
+          <li>Source-to-deployment verification on live contracts</li>
+          <li>Economic analysis before severity is assigned</li>
+          <li>Executable Foundry PoCs against forked mainnet state</li>
+          <li>Falsification when the path does not pay</li>
+          <li>Responsible disclosure, then a public writeup</li>
+        </ul>
+      </section>
+
+      <section className="mt-12 print:mt-8">
+        <h2 className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent print:text-black">
+          Engineering used in the research
+        </h2>
         <p className="mt-3 text-sm leading-relaxed text-mute print:text-neutral-800">
-          17 documented findings across 11 protocols. Source-to-deployment verification,
-          economic analysis, executable proofs, and falsification when the path does not pay.
+          Ragnarok — adversarial research harness. Themis — runtime invariant monitoring.
+          Solidity, Foundry, TypeScript, Ethereum / Base / BSC / Solana.
         </p>
         <p className="mt-3 font-mono text-[11px] text-mute print:text-neutral-700">
-          <Link href="/research" className="hover:text-paper print:text-black">godwinxbt.vercel.app/research</Link>
-          {" · "}
-          <a href="https://github.com/Godwin-web3/Godwin-web3/blob/main/FINDINGS.md" className="hover:text-paper print:text-black">Findings index</a>
-        </p>
-      </section>
-
-      <section className="mt-12 print:mt-8">
-        <h2 className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent print:text-black">Engineering</h2>
-        <dl className="mt-4 grid gap-4 text-sm sm:grid-cols-2 print:grid-cols-2">
-          <div>
-            <dt className="font-mono text-[11px] uppercase tracking-wider text-mute print:text-neutral-600">Languages</dt>
-            <dd className="mt-1 text-paper print:text-black">TypeScript · JavaScript · Python · Solidity · SQL</dd>
-          </div>
-          <div>
-            <dt className="font-mono text-[11px] uppercase tracking-wider text-mute print:text-neutral-600">Systems</dt>
-            <dd className="mt-1 text-paper print:text-black">React · Next.js · Node.js · Hono · Bun · PostgreSQL</dd>
-          </div>
-          <div>
-            <dt className="font-mono text-[11px] uppercase tracking-wider text-mute print:text-neutral-600">Chains</dt>
-            <dd className="mt-1 text-paper print:text-black">Ethereum · Base · Arbitrum · Optimism · Solana</dd>
-          </div>
-          <div>
-            <dt className="font-mono text-[11px] uppercase tracking-wider text-mute print:text-neutral-600">Infrastructure</dt>
-            <dd className="mt-1 text-paper print:text-black">Vercel · Supabase · GitHub Actions · Docker · RPC</dd>
-          </div>
-        </dl>
-      </section>
-
-      <section className="mt-12 print:mt-8">
-        <h2 className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent print:text-black">Currently interested in</h2>
-        <p className="mt-3 text-sm leading-relaxed text-mute print:text-neutral-800">
-          Financial infrastructure · stablecoins · payments · protocol engineering ·
-          distributed systems · developer tools · security
+          <Link href="/work" className="hover:text-paper print:text-black">Selected engineering work</Link>
         </p>
       </section>
     </div>
