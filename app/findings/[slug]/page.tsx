@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { findings } from "../../lib/findings";
+import { explorerUrl } from "../../lib/explorers";
+import { profileFindingUrl } from "../../lib/pocs";
 import ChainIcon from "../../components/ChainIcon";
 import SeverityBadge from "../../components/SeverityBadge";
 
@@ -17,10 +19,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const finding = findings.find((f) => f.slug === slug);
   if (!finding) return {};
-  return {
-    title: finding.title,
-    description: finding.summary,
-  };
+  return { title: finding.title, description: finding.summary };
 }
 
 export default async function FindingDetailPage({
@@ -35,98 +34,86 @@ export default async function FindingDetailPage({
 
   const prev = index > 0 ? findings[index - 1] : null;
   const next = index < findings.length - 1 ? findings[index + 1] : null;
+  const explorer = finding.address ? explorerUrl(finding.chain, finding.address) : null;
 
   return (
-    <div className="mx-auto max-w-3xl px-6 py-20">
-      <Link href="/findings" className="text-sm text-neutral-500 hover:text-white">
-        &larr; All findings
+    <div className="mx-auto max-w-3xl px-5 py-16 sm:px-6 sm:py-20">
+      <Link href="/findings" className="text-sm text-mute transition hover:text-paper">
+        All findings
       </Link>
-
       <div className="mt-6 flex items-start justify-between gap-4">
         <div className="min-w-0">
-          <p className="flex items-center gap-1.5 font-mono text-sm uppercase tracking-wide text-neutral-500">
+          <p className="flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wide text-mute">
             {finding.protocol} ·
             <ChainIcon chain={finding.chain} size={14} />
             {finding.chain}
           </p>
-          <h1 className="mt-2 break-words text-3xl font-semibold tracking-tight text-white">
+          <h1 className="mt-2 break-words font-serif text-3xl tracking-tight text-paper sm:text-4xl">
             {finding.title}
           </h1>
         </div>
         <SeverityBadge severity={finding.severity} />
       </div>
-
-      <p className="mt-3 font-mono text-sm text-neutral-500">{finding.status}</p>
-
-      {finding.address && (
-        <p className="mt-2 break-words font-mono text-xs text-neutral-600">
-          Contract: <span className="text-neutral-400">{finding.address}</span>
+      <p className="mt-3 font-mono text-sm text-mute">{finding.status}</p>
+      {finding.address ? (
+        <p className="mt-2 break-words font-mono text-xs text-mute">
+          Contract:{" "}
+          {explorer ? (
+            <a href={explorer} target="_blank" rel="noopener noreferrer" className="text-paper underline decoration-paper/25 underline-offset-4 hover:decoration-copper">
+              {finding.address}
+            </a>
+          ) : (
+            <span className="text-paper/80">{finding.address}</span>
+          )}
         </p>
-      )}
-
+      ) : null}
       <div className="mt-6 flex flex-wrap gap-2">
         {finding.tags.map((tag) => (
-          <span
-            key={tag}
-            className="rounded-full border border-white/10 px-2.5 py-0.5 text-xs text-neutral-400"
-          >
+          <span key={tag} className="rounded-full border border-paper/15 px-2.5 py-0.5 text-xs text-mute">
             {tag}
           </span>
         ))}
       </div>
-
       <section className="mt-10">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-emerald-400">Summary</h2>
-        <p className="mt-3 break-words leading-relaxed text-neutral-300">{finding.summary}</p>
+        <h2 className="font-mono text-[11px] uppercase tracking-[0.22em] text-copper">Summary</h2>
+        <p className="mt-3 break-words leading-relaxed text-paper/85">{finding.summary}</p>
       </section>
-
       <section className="mt-10">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-emerald-400">Root cause</h2>
-        <p className="mt-3 break-words leading-relaxed text-neutral-300">{finding.rootCause}</p>
+        <h2 className="font-mono text-[11px] uppercase tracking-[0.22em] text-copper">Root cause</h2>
+        <p className="mt-3 break-words leading-relaxed text-paper/85">{finding.rootCause}</p>
       </section>
-
       <section className="mt-10">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-emerald-400">Verification</h2>
-        <p className="mt-3 break-words leading-relaxed text-neutral-300">{finding.verification}</p>
-        <p className="mt-3 text-sm text-neutral-500">
+        <h2 className="font-mono text-[11px] uppercase tracking-[0.22em] text-copper">Verification</h2>
+        <p className="mt-3 break-words leading-relaxed text-paper/85">{finding.verification}</p>
+        <p className="mt-3 text-sm text-mute">
           {finding.verifiedLive
             ? "Verified against real, live deployed contract state."
-            : "Verified against real source code, not live/deployed on this chain."}
+            : "Verified against real source code, not live deployed on this chain."}
         </p>
-        {finding.pocUrl && (
-          <a
-            href={finding.pocUrl}
-            target="_blank"
-            className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-emerald-400 hover:text-emerald-300"
-          >
-            View the Foundry PoC &rarr;
-          </a>
-        )}
+        <a
+          href={profileFindingUrl(finding.slug)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-paper underline decoration-copper/70 underline-offset-4 hover:decoration-copper"
+        >
+          Receipt on GitHub
+        </a>
       </section>
-
-      <div className="mt-16 flex items-start justify-between gap-4 border-t border-white/10 pt-8 text-sm">
+      <div className="mt-16 flex items-start justify-between gap-4 border-t border-paper/10 pt-8 text-sm">
         {prev ? (
-          <Link
-            href={`/findings/${prev.slug}`}
-            className="group block max-w-[45%] text-neutral-500 hover:text-white"
-          >
-            <span className="block text-xs">&larr; Previous</span>
-            <span className="mt-1 block truncate group-hover:text-emerald-400">{prev.title}</span>
+          <Link href={`/findings/${prev.slug}`} className="group block max-w-[45%] text-mute hover:text-paper">
+            <span className="block text-xs">Previous</span>
+            <span className="mt-1 block truncate group-hover:text-copper">{prev.title}</span>
           </Link>
         ) : (
           <span />
         )}
         {next ? (
-          <Link
-            href={`/findings/${next.slug}`}
-            className="group block max-w-[45%] text-right text-neutral-500 hover:text-white"
-          >
-            <span className="block text-xs">Next &rarr;</span>
-            <span className="mt-1 block truncate group-hover:text-emerald-400">{next.title}</span>
+          <Link href={`/findings/${next.slug}`} className="group block max-w-[45%] text-right text-mute hover:text-paper">
+            <span className="block text-xs">Next</span>
+            <span className="mt-1 block truncate group-hover:text-copper">{next.title}</span>
           </Link>
-        ) : (
-          <span />
-        )}
+        ) : null}
       </div>
     </div>
   );

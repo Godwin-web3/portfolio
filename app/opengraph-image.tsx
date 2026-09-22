@@ -33,20 +33,10 @@ export default function OpengraphImage() {
           <div style={{ display: "flex", fontFamily: "monospace", fontSize: 28, color: "#e07a4c" }}>
             godwin<span style={{ color: "#f3efe6" }}>.xbt</span>
           </div>
-          <div
-            style={{
-              display: "flex",
-              marginTop: 20,
-              fontSize: 52,
-              fontWeight: 700,
-              lineHeight: 1.15,
-              maxWidth: 780,
-            }}
-          >
-            I ship products. Then I break them on purpose.
+          <div style={{ display: "flex", marginTop: 20, fontSize: 48, fontWeight: 700, lineHeight: 1.15, maxWidth: 780 }}>
+            Follow the settlement path. Then prove the claim.
           </div>
           <div style={{ display: "flex", marginTop: 32, gap: 28, fontSize: 24, color: "#b7b0a4" }}>
-            <div style={{ display: "flex" }}>Full-stack builder</div>
             <div style={{ display: "flex" }}>Auditor @ SMC Audits</div>
             <div style={{ display: "flex" }}>{stats.totalFindings} findings</div>
           </div>
