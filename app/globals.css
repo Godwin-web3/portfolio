@@ -4,20 +4,27 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-serif: var(--font-instrument), "Iowan Old Style", Palatino, serif;
-  --color-ink: #0c0b09;
-  --color-paper: #f3efe6;
-  --color-mute: #b7b0a4;
-  --color-copper: #e07a4c;
-  --color-card: #161410;
+  --color-ink: #0b0c0e;
+  --color-paper: #e8eaed;
+  --color-mute: #8b919a;
+  --color-line: #1c2128;
+  --color-card: #111418;
+  --color-accent: #7eb8ff;
 }
 
 :focus-visible {
-  outline: 2px solid #e07a4c;
+  outline: 1px solid #7eb8ff;
   outline-offset: 2px;
-  border-radius: 4px;
 }
 
 ::selection {
-  background: #e07a4c;
-  color: #0c0b09;
+  background: #7eb8ff;
+  color: #0b0c0e;
+}
+
+body {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
