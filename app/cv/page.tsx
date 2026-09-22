@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import PrintButton from "./PrintButton";
 
 export const metadata: Metadata = {
   title: "CV",
@@ -48,13 +49,7 @@ export default function CVPage() {
           <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">CV</p>
           <h1 className="mt-3 font-serif text-4xl text-paper sm:text-5xl">GodwinXbt</h1>
         </div>
-        <button
-          type="button"
-          onClick={() => typeof window !== "undefined" && window.print()}
-          className="border border-line px-4 py-2 font-mono text-[11px] uppercase tracking-wider text-paper hover:border-accent"
-        >
-          Print / PDF
-        </button>
+        <PrintButton />
       </div>
 
       <header className="hidden print:block">
@@ -72,31 +67,11 @@ export default function CVPage() {
       </p>
 
       <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 font-mono text-[11px] text-mute print:text-neutral-700">
-        <li>
-          <a href="mailto:godwinxbt@gmail.com" className="hover:text-paper print:text-black">
-            godwinxbt@gmail.com
-          </a>
-        </li>
-        <li>
-          <a href="https://godwinxbt.vercel.app" className="hover:text-paper print:text-black">
-            godwinxbt.vercel.app
-          </a>
-        </li>
-        <li>
-          <a href="https://github.com/Godwin-web3" className="hover:text-paper print:text-black">
-            github.com/Godwin-web3
-          </a>
-        </li>
-        <li>
-          <a href="https://x.com/GodwinXbt" className="hover:text-paper print:text-black">
-            x.com/GodwinXbt
-          </a>
-        </li>
-        <li>
-          <a href="https://t.me/GodwinXbt" className="hover:text-paper print:text-black">
-            t.me/GodwinXbt
-          </a>
-        </li>
+        <li><a href="mailto:godwinxbt@gmail.com" className="hover:text-paper print:text-black">godwinxbt@gmail.com</a></li>
+        <li><a href="https://godwinxbt.vercel.app" className="hover:text-paper print:text-black">godwinxbt.vercel.app</a></li>
+        <li><a href="https://github.com/Godwin-web3" className="hover:text-paper print:text-black">github.com/Godwin-web3</a></li>
+        <li><a href="https://x.com/GodwinXbt" className="hover:text-paper print:text-black">x.com/GodwinXbt</a></li>
+        <li><a href="https://t.me/GodwinXbt" className="hover:text-paper print:text-black">t.me/GodwinXbt</a></li>
       </ul>
 
       <section className="mt-12 print:mt-8">
@@ -132,13 +107,9 @@ export default function CVPage() {
           economic analysis, executable proofs, and falsification when the path does not pay.
         </p>
         <p className="mt-3 font-mono text-[11px] text-mute print:text-neutral-700">
-          <Link href="/research" className="hover:text-paper print:text-black">
-            godwinxbt.vercel.app/research
-          </Link>
+          <Link href="/research" className="hover:text-paper print:text-black">godwinxbt.vercel.app/research</Link>
           {" · "}
-          <a href="https://github.com/Godwin-web3/Godwin-web3/blob/main/FINDINGS.md" className="hover:text-paper print:text-black">
-            Findings index
-          </a>
+          <a href="https://github.com/Godwin-web3/Godwin-web3/blob/main/FINDINGS.md" className="hover:text-paper print:text-black">Findings index</a>
         </p>
       </section>
 
