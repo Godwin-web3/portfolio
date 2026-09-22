@@ -8,6 +8,7 @@ const links = [
   { href: "/work", label: "Work" },
   { href: "/research", label: "Research" },
   { href: "/engineering", label: "Engineering" },
+  { href: "/cv", label: "CV" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
@@ -16,7 +17,7 @@ export default function Nav() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-ink/90 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-line bg-ink/90 backdrop-blur print:hidden">
       <nav className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-5 py-4 sm:px-6">
         <Link href="/" className="font-mono text-sm tracking-tight text-paper">
           godwinxbt
