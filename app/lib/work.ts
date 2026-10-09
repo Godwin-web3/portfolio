@@ -28,19 +28,6 @@ export const works: Work[] = [
     github: "https://github.com/Godwin-web3/blast-radius",
   },
   {
-    title: "Assay",
-    problem: "A ticker on Solana is not proof of what the token is.",
-    blurb:
-      "One pass over a tokenized stock: mint, supply, freeze authority, and whether the contract matches the claim.",
-    image: "/work/assay.png",
-    width: 1440,
-    height: 900,
-    alt: "Assay verification report for AAPLx, a tokenized Apple stock on Solana",
-    tags: ["Solana", "TypeScript"],
-    live: "https://assay-gold.vercel.app",
-    github: "https://github.com/Godwin-web3/assay",
-  },
-  {
     title: "Paidline",
     problem: "An invoice that dies at the settlement hop is not a paid invoice.",
     blurb:
