@@ -28,20 +28,6 @@ export const works: Work[] = [
     github: "https://github.com/Godwin-web3/blast-radius",
   },
   {
-    title: "Paidline",
-    problem: "An invoice that dies at the settlement hop is not a paid invoice.",
-    blurb:
-      "Invoice in. USDC on Ethereum. Settlement on Creditcoin. A status page that follows the money, not the story.",
-    image: "/work/paidline.png",
-    width: 1440,
-    height: 900,
-    alt: "Paidline invoice marked paid and settled on Creditcoin testnet",
-    tags: ["Solidity", "USDC", "Creditcoin"],
-    live: "https://paidline.vercel.app",
-    github: "https://github.com/Godwin-web3/paidline",
-    zoom: 2.2,
-  },
-  {
     title: "Ragnarok",
     problem: "A finding is not a finding until a fork proves it.",
     blurb:
@@ -62,19 +48,6 @@ export const works: Work[] = [
     live: "https://keel-black-phi.vercel.app",
     github: "https://github.com/Godwin-web3/keel",
     zoom: 2.2,
-  },
-  {
-    title: "NoGhosts / Berth",
-    problem: "Agent hire pages that show a logo and no evidence are noise.",
-    blurb:
-      "Intent-hire for live ERC-8004 agents. Post a job, fund escrow, an agent takes the work. Evidence over vanity.",
-    image: "/work/noghosts.png",
-    width: 1440,
-    height: 900,
-    alt: "Berth, the NoGhosts app, showing an open intent-hire job with escrow funded",
-    tags: ["Solidity", "ERC-8004"],
-    live: "https://noghosts.vercel.app",
-    github: "https://github.com/Godwin-web3/noghosts",
   },
   {
     title: "Folio",
