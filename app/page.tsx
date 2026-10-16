@@ -1,8 +1,17 @@
+import Image from "next/image";
 import Link from "next/link";
-import { projects, featured } from "./lib/projects";
-import { stack } from "./lib/work";
+import BrandIcon from "./components/BrandIcon";
+import { featured } from "./lib/projects";
+import { languages, systems, chains, infra, simpleIconUrl } from "./lib/stack";
+
+const socials = [
+  { name: "GitHub", slug: "github", hex: "ffffff", href: "https://github.com/Godwin-web3" },
+  { name: "X", slug: "x", hex: "ffffff", href: "https://x.com/GodwinXbt" },
+];
 
 export default function Home() {
+  const expertise = [...languages, ...systems, ...chains, ...infra];
+
   return (
     <div className="mx-auto max-w-2xl px-5 py-16 sm:px-6 sm:py-20">
       <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">GodwinXbt</p>
@@ -25,9 +34,9 @@ export default function Home() {
             All work
           </Link>
         </div>
-        <ul className="mt-6 space-y-5">
+        <ul className="mt-6 divide-y divide-line">
           {featured.map((p) => (
-            <li key={p.slug} className="border-b border-line pb-5 last:border-0">
+            <li key={p.slug} className="py-5 first:pt-0">
               <div className="flex flex-wrap items-baseline gap-x-3">
                 <a
                   href={p.github}
@@ -39,7 +48,7 @@ export default function Home() {
                 </a>
                 <span className="text-sm text-mute">{p.line}</span>
               </div>
-              <p className="mt-1 text-sm text-mute">{p.problem}</p>
+              <p className="mt-1 text-sm leading-relaxed text-mute">{p.problem}</p>
               <p className="mt-2 font-mono text-[11px] uppercase tracking-wider text-mute">
                 {p.tags.join(" · ")}
                 {p.live ? " · Live" : ""}
@@ -51,21 +60,21 @@ export default function Home() {
 
       <section className="mt-16">
         <h2 className="font-serif text-2xl text-paper">Expertise</h2>
-        <ul className="mt-6 grid grid-cols-2 gap-x-6 gap-y-2 text-sm text-mute sm:grid-cols-3">
-          {stack.map((s) => (
-            <li key={s.name} className="border-b border-line/50 py-1">
-              {s.name}
+        <ul className="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 text-sm text-mute sm:grid-cols-3">
+          {expertise.map((item) => (
+            <li key={item.name} className="flex items-center">
+              <BrandIcon item={item} size={16} />
             </li>
           ))}
         </ul>
-        <p className="mt-4 text-sm text-mute">
+        <p className="mt-5 text-sm leading-relaxed text-mute">
           Solidity and Foundry for contracts and fork proofs. TypeScript and Next.js for surfaces. viem for reads and traces.
         </p>
       </section>
 
       <section className="mt-16">
         <h2 className="font-serif text-2xl text-paper">Focus</h2>
-        <ul className="mt-4 space-y-1 text-sm text-mute">
+        <ul className="mt-4 space-y-2 text-sm text-mute">
           <li>Protocol accounting and settlement paths</li>
           <li>Smart contract security and attack surfaces</li>
           <li>Stablecoins and payment infrastructure</li>
@@ -73,17 +82,23 @@ export default function Home() {
         </ul>
       </section>
 
-      <div className="mt-16 flex flex-wrap gap-5 text-sm">
-        <a href="https://github.com/Godwin-web3" target="_blank" rel="noopener noreferrer" className="text-paper underline decoration-line underline-offset-4 hover:decoration-accent">
-          GitHub
-        </a>
-        <a href="https://x.com/GodwinXbt" target="_blank" rel="noopener noreferrer" className="text-paper underline decoration-line underline-offset-4 hover:decoration-accent">
-          X
-        </a>
-        <Link href="/about" className="text-paper underline decoration-line underline-offset-4 hover:decoration-accent">
+      <div className="mt-16 flex flex-wrap items-center gap-6">
+        {socials.map((s) => (
+          <a
+            key={s.name}
+            href={s.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm text-paper underline decoration-line underline-offset-4 hover:decoration-accent"
+          >
+            <Image src={simpleIconUrl(s.slug, s.hex)} alt="" width={16} height={16} unoptimized className="opacity-90" />
+            {s.name}
+          </a>
+        ))}
+        <Link href="/about" className="text-sm text-paper underline decoration-line underline-offset-4 hover:decoration-accent">
           About
         </Link>
-        <Link href="/contact" className="text-paper underline decoration-line underline-offset-4 hover:decoration-accent">
+        <Link href="/contact" className="text-sm text-paper underline decoration-line underline-offset-4 hover:decoration-accent">
           Contact
         </Link>
       </div>
