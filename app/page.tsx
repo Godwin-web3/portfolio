@@ -28,7 +28,7 @@ export default function Home() {
       </h1>
       <div className="mt-6 space-y-4 text-base leading-relaxed text-mute">
         <p>
-          Researcher first. Builder second. I follow the mechanism: contracts, settlement paths, accounting, and the places a system can break even when the dashboard looks fine.
+          I build and ship Solidity systems — payment infrastructure, protocol tooling, on-chain policy enforcement — then audit them the way an attacker would: reading real, deployed source, tracing root causes, proving exploits against forked mainnet state.
         </p>
         <p>
           Verified findings with working PoCs against live forks. Tools for monitoring invariants and adversarial research. Interests in DeFi, smart contract security, stablecoins, payments, and real-world settlement.
