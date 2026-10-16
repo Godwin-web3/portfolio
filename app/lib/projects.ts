@@ -125,6 +125,19 @@ export const projects: Project[] = [
     live: "https://folio-three-taupe.vercel.app",
     image: "/work/folio-poster.png",
   },
+  {
+    slug: "lintel",
+    title: "Lintel",
+    line: "Conditional settlement on Zcash",
+    problem: "A two-party payment needs the condition to be met before the spend completes, without revealing the note.",
+    approach: "Seller creates an adaptor pre-signature. Buyer completes it only after the condition. Selective disclosure proves one fact without full reveal.",
+    result: "Testnet adaptor-enabled PCZT spends mined. Halo 2 circuit for MinValue and InvoiceHash passes MockProver.",
+    learned: "The settlement hop is still the product when the chain is Zcash and the primitive is an adaptor.",
+    tags: ["Payments", "Zcash", "Adaptor signatures", "Rust"],
+    categories: ["Payments", "Protocols", "Research"],
+    stack: ["Rust", "Halo 2", "Zcash"],
+    github: "https://github.com/Godwin-web3/lintel",
+  },
 ];
 
 export const featured = projects.filter((p) => p.featured);
