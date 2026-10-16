@@ -49,7 +49,7 @@ export default function BrandIcon({
   return (
     <span className="inline-flex items-center gap-2">
       {icon && (
-        <svg width={size} height={size} viewBox="0 0 24 24" fill={`#${item.hex}`} aria-hidden className="shrink-0">
+        <svg width={size} height={size} viewBox="0 0 24 24" fill={item.hex === "currentColor" ? "currentColor" : `#${item.hex}`} aria-hidden className="shrink-0">
           <path d={icon.path} />
         </svg>
       )}

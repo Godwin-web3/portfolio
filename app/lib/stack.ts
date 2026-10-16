@@ -8,12 +8,12 @@ export const languages: StackItem[] = [
   { name: "TypeScript", slug: "typescript", hex: "3178C6" },
   { name: "JavaScript", slug: "javascript", hex: "F7DF1E" },
   { name: "Python", slug: "python", hex: "3776AB" },
-  { name: "Solidity", slug: "solidity", hex: "363636" },
+  { name: "Solidity", slug: "solidity", hex: "currentColor" },
 ];
 
 export const systems: StackItem[] = [
   { name: "React", slug: "react", hex: "61DAFB" },
-  { name: "Next.js", slug: "nextdotjs", hex: "271111" },
+  { name: "Next.js", slug: "nextdotjs", hex: "currentColor" },
   { name: "Node.js", slug: "nodedotjs", hex: "339933" },
   { name: "PostgreSQL", slug: "postgresql", hex: "4169E1" },
 ];
@@ -24,7 +24,7 @@ export const chains: StackItem[] = [
 ];
 
 export const infra: StackItem[] = [
-  { name: "Vercel", slug: "vercel", hex: "271111" },
+  { name: "Vercel", slug: "vercel", hex: "currentColor" },
   { name: "Docker", slug: "docker", hex: "2496ED" },
-  { name: "GitHub", slug: "github", hex: "271111" },
+  { name: "GitHub", slug: "github", hex: "currentColor" },
 ];

@@ -12,7 +12,7 @@ export default function AboutPage() {
     <div className="mx-auto max-w-2xl px-5 py-16 sm:px-6 sm:py-20">
       <Image src="/avatar.jpg" alt="GodwinXbt" width={96} height={96} className="h-24 w-24 rounded-2xl border border-line object-cover" />
       <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.22em] text-accent">About</p>
-      <h1 className="mt-3 font-serif text-4xl leading-[1.1] text-paper sm:text-5xl">
+      <h1 className="mt-3 font-serif text-4xl font-[750] leading-[1.1] tracking-[-0.02em] text-paper sm:text-5xl">
         Engineer. Protocol researcher. Security as a method.
       </h1>
       <div className="mt-8 space-y-5 text-base leading-relaxed text-mute">

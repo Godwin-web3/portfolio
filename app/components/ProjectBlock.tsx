@@ -4,7 +4,7 @@ import type { Project } from "../lib/projects";
 
 export default function ProjectBlock({ project }: { project: Project }) {
   return (
-    <article className="overflow-hidden rounded-xl border border-line transition duration-200 hover:border-accent/50">
+    <article className="overflow-hidden rounded-xl border border-line transition duration-200 hover:-translate-y-0.5 hover:border-accent/50">
       {project.image ? (
         <div className="relative aspect-[16/9] border-b border-line bg-ink">
           <Image src={project.image} alt={project.title} fill className="object-cover" />
@@ -12,7 +12,7 @@ export default function ProjectBlock({ project }: { project: Project }) {
       ) : null}
       <div className="p-5 sm:p-6">
         <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-accent">{project.line}</p>
-        <h3 className="mt-2 font-serif text-3xl text-paper">{project.title}</h3>
+        <h3 className="mt-2 font-serif text-3xl font-[650] tracking-tight text-paper">{project.title}</h3>
         <dl className="mt-5 grid gap-5 text-sm leading-relaxed text-mute sm:grid-cols-3">
           <div>
             <dt className="font-mono text-[11px] uppercase tracking-wider text-accent">Problem</dt>

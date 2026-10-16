@@ -14,7 +14,7 @@ export default function FindingsPage() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-16 sm:px-6 sm:py-20">
       <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">Findings</p>
-      <h1 className="mt-3 font-serif text-4xl tracking-tight text-paper sm:text-5xl">
+      <h1 className="mt-3 font-serif text-4xl font-[750] tracking-[-0.02em] text-paper sm:text-5xl">
         {stats.totalFindings} findings across {stats.protocols} protocols
       </h1>
       <p className="mt-4 max-w-2xl text-sm leading-relaxed text-mute">

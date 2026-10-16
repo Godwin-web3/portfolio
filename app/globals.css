@@ -4,27 +4,68 @@
   --font-sans: var(--font-instrument-sans);
   --font-mono: var(--font-geist-mono);
   --font-serif: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
-  --color-ink: #fbf7f5;
-  --color-paper: #271111;
-  --color-mute: #7a6a64;
-  --color-line: #eee3de;
-  --color-card: #f5ede9;
-  --color-accent: #c23600;
+  --color-ink: var(--theme-ink);
+  --color-paper: var(--theme-paper);
+  --color-mute: var(--theme-mute);
+  --color-line: var(--theme-line);
+  --color-card: var(--theme-card);
+  --color-accent: var(--theme-accent);
+}
+
+:root {
+  --theme-ink: #fbf7f5;
+  --theme-paper: #271111;
+  --theme-mute: #7a6a64;
+  --theme-line: #eee3de;
+  --theme-card: #f5ede9;
+  --theme-accent: #c23600;
+  --theme-grid-line: 39, 17, 17;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --theme-ink: #16110e;
+  --theme-paper: #f5ede8;
+  --theme-mute: #a3928b;
+  --theme-line: #342b26;
+  --theme-card: #1f1915;
+  --theme-accent: #ff7a47;
+  --theme-grid-line: 255, 237, 230;
+  color-scheme: dark;
 }
 
 :focus-visible {
-  outline: 1px solid #c23600;
+  outline: 1px solid var(--theme-accent);
   outline-offset: 2px;
 }
 
 ::selection {
-  background: #c23600;
-  color: #fbf7f5;
+  background: var(--theme-accent);
+  color: var(--theme-ink);
 }
 
 body {
   background-image:
-    linear-gradient(to right, rgba(39, 17, 17, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(39, 17, 17, 0.035) 1px, transparent 1px);
+    linear-gradient(to right, rgba(var(--theme-grid-line), 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(var(--theme-grid-line), 0.035) 1px, transparent 1px);
   background-size: 48px 48px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(14px, -10px); }
+}
+
+.animate-drift {
+  animation: drift 24s ease-in-out infinite;
 }

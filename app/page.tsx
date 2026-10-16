@@ -2,14 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import BrandIcon from "./components/BrandIcon";
+import Reveal from "./components/Reveal";
 import SeverityBadge from "./components/SeverityBadge";
 import { featured, projects } from "./lib/projects";
 import { findings, stats } from "./lib/findings";
 import { languages, systems, chains, infra } from "./lib/stack";
 
 const socials = [
-  { name: "GitHub", slug: "github", hex: "271111", href: "https://github.com/Godwin-web3" },
-  { name: "X", slug: "x", hex: "271111", href: "https://x.com/GodwinXbt" },
+  { name: "GitHub", slug: "github", hex: "currentColor", href: "https://github.com/Godwin-web3" },
+  { name: "X", slug: "x", hex: "currentColor", href: "https://x.com/GodwinXbt" },
 ];
 
 const selectedFindings = [
@@ -33,42 +34,48 @@ export default function Home() {
 
   return (
     <div className="mx-auto max-w-2xl px-5 py-16 sm:px-6 sm:py-20">
-      <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
-        <div className="h-28 w-28 shrink-0 overflow-hidden rounded-2xl border border-line sm:h-36 sm:w-36">
-          <Image src="/avatar.jpg" alt="GodwinXbt" width={288} height={288} priority className="h-full w-full object-cover" />
-        </div>
-        <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">GodwinXbt</p>
-          <h1 className="mt-3 font-serif text-3xl leading-[1.1] tracking-tight text-paper sm:text-4xl">
-            I study how protocols fail before I write the code that is supposed to stop them.
-          </h1>
-        </div>
+      <div className="relative overflow-hidden">
+        <div
+          aria-hidden
+          className="animate-drift pointer-events-none absolute -left-10 -top-10 h-56 w-56 rounded-full bg-accent/10 blur-3xl"
+        />
+        <Reveal className="relative flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
+          <div className="h-28 w-28 shrink-0 overflow-hidden rounded-2xl border border-line sm:h-36 sm:w-36">
+            <Image src="/avatar.jpg" alt="GodwinXbt" width={288} height={288} priority className="h-full w-full object-cover" />
+          </div>
+          <div>
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">GodwinXbt</p>
+            <h1 className="mt-3 font-serif text-3xl font-[750] leading-[1.1] tracking-[-0.02em] text-paper sm:text-4xl">
+              I study how protocols fail before I write the code that is supposed to stop them.
+            </h1>
+          </div>
+        </Reveal>
       </div>
 
-      <div className="mt-6 space-y-4 text-base leading-relaxed text-mute">
+      <Reveal delay={0.1} className="mt-6 space-y-4 text-base leading-relaxed text-mute">
         <p>
           I build and ship Solidity systems — payment infrastructure, protocol tooling, on-chain policy enforcement — then audit them the way an attacker would: reading real, deployed source, tracing root causes, proving exploits against forked mainnet state.
         </p>
         <p>
           Verified findings with working PoCs against live forks. Tools for monitoring invariants and adversarial research. Interests in DeFi, smart contract security, stablecoins, payments, and real-world settlement.
         </p>
-      </div>
+      </Reveal>
 
-      <section className="mt-10 rounded-2xl border border-line bg-card p-5 sm:p-6">
+      <Reveal delay={0.15} className="mt-10 rounded-2xl border border-line bg-card p-5 sm:p-6">
         <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-accent">At a glance</p>
         <dl className="mt-4 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-5">
           {glance.map((g) => (
             <div key={g.label} className="bg-card p-4">
-              <dd className="font-serif text-3xl text-paper">{g.value}</dd>
+              <dd className="font-serif text-3xl font-[650] text-paper">{g.value}</dd>
               <dt className="mt-1 text-xs text-mute">{g.label}</dt>
             </div>
           ))}
         </dl>
-      </section>
+      </Reveal>
 
-      <section className="mt-16">
+      <Reveal className="mt-16">
         <div className="flex items-baseline justify-between">
-          <h2 className="font-serif text-2xl text-paper">Work</h2>
+          <h2 className="font-serif text-2xl font-[650] tracking-tight text-paper">Work</h2>
           <Link href="/work" className="inline-flex items-center gap-0.5 font-mono text-[11px] uppercase tracking-wider text-mute hover:text-paper">
             All work
             <ChevronRight size={12} aria-hidden />
@@ -96,11 +103,11 @@ export default function Home() {
             </li>
           ))}
         </ul>
-      </section>
+      </Reveal>
 
-      <section className="mt-16">
+      <Reveal className="mt-16">
         <div className="flex items-baseline justify-between">
-          <h2 className="font-serif text-2xl text-paper">Selected findings</h2>
+          <h2 className="font-serif text-2xl font-[650] tracking-tight text-paper">Selected findings</h2>
           <Link href="/research" className="inline-flex items-center gap-0.5 font-mono text-[11px] uppercase tracking-wider text-mute hover:text-paper">
             All research
             <ChevronRight size={12} aria-hidden />
@@ -121,10 +128,10 @@ export default function Home() {
             </li>
           ))}
         </ul>
-      </section>
+      </Reveal>
 
-      <section className="mt-16">
-        <h2 className="font-serif text-2xl text-paper">Expertise</h2>
+      <Reveal className="mt-16">
+        <h2 className="font-serif text-2xl font-[650] tracking-tight text-paper">Expertise</h2>
         <ul className="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 text-sm text-mute sm:grid-cols-3">
           {expertise.map((item) => (
             <li key={item.name} className="flex items-center">
@@ -135,9 +142,9 @@ export default function Home() {
         <p className="mt-5 text-sm leading-relaxed text-mute">
           Solidity and Foundry for contracts and fork proofs. TypeScript and Next.js for surfaces. viem for reads and traces.
         </p>
-      </section>
+      </Reveal>
 
-      <div className="mt-16 flex flex-wrap items-center gap-3">
+      <Reveal className="mt-16 flex flex-wrap items-center gap-3">
         {socials.map((s) => (
           <a
             key={s.name}
@@ -159,7 +166,7 @@ export default function Home() {
         <Link href="/findings" className="rounded-full border border-line px-4 py-2 text-sm text-paper transition hover:border-accent">
           Findings
         </Link>
-      </div>
+      </Reveal>
     </div>
   );
 }

@@ -30,12 +30,12 @@ export default function ResearchPage() {
       </p>
       <div className="mt-12 grid gap-4">
         {selected.map((f) => (
-          <Link key={f!.slug} href={`/findings/${f!.slug}`} className="min-w-0 rounded-xl border border-line p-5 transition duration-200 hover:border-accent/50">
+          <Link key={f!.slug} href={`/findings/${f!.slug}`} className="min-w-0 rounded-xl border border-line p-5 transition duration-200 hover:-translate-y-0.5 hover:border-accent/50">
             <div className="flex flex-wrap items-center gap-3">
               <SeverityBadge severity={f!.severity} />
               <span className="font-mono text-[11px] uppercase tracking-wider text-mute">{f!.protocol} · {f!.chain}</span>
             </div>
-            <h2 className="mt-3 break-words font-serif text-2xl text-paper">{f!.title}</h2>
+            <h2 className="mt-3 break-words font-serif text-2xl font-[650] tracking-tight text-paper">{f!.title}</h2>
             <p className="mt-3 break-words text-sm leading-relaxed text-mute">{f!.summary}</p>
             <p className="mt-3 font-mono text-[11px] text-mute">{f!.status}</p>
           </Link>

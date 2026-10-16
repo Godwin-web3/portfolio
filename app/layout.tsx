@@ -21,9 +21,22 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title, description, creator: "@GodwinXbt" },
 };
 
+const themeInitScript = `
+(function () {
+  try {
+    var stored = localStorage.getItem("theme");
+    var theme = stored || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.dataset.theme = theme;
+  } catch (e) {}
+})();
+`;
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${instrumentSans.variable} ${geistMono.variable} ${bricolage.variable} h-full antialiased`}>
+    <html lang="en" suppressHydrationWarning className={`${instrumentSans.variable} ${geistMono.variable} ${bricolage.variable} h-full antialiased`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className="flex min-h-full flex-col bg-ink font-sans text-paper">
         <Nav />
         <main className="flex-1">{children}</main>

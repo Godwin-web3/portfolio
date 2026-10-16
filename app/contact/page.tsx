@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 
 const links = [
   { name: "Email", href: "mailto:godwinxbt@gmail.com", label: "godwinxbt@gmail.com" },
-  { name: "GitHub", href: "https://github.com/Godwin-web3", label: "github.com/Godwin-web3", slug: "github", hex: "271111" },
-  { name: "X", href: "https://x.com/GodwinXbt", label: "x.com/GodwinXbt", slug: "x", hex: "271111" },
+  { name: "GitHub", href: "https://github.com/Godwin-web3", label: "github.com/Godwin-web3", slug: "github", hex: "currentColor" },
+  { name: "X", href: "https://x.com/GodwinXbt", label: "x.com/GodwinXbt", slug: "x", hex: "currentColor" },
   { name: "Telegram", href: "https://t.me/GodwinXbt", label: "t.me/GodwinXbt", slug: "telegram", hex: "26A5E4" },
 ];
 
@@ -17,7 +17,7 @@ export default function ContactPage() {
   return (
     <div className="mx-auto max-w-2xl px-5 py-16 sm:px-6 sm:py-20">
       <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">Contact</p>
-      <h1 className="mt-3 font-serif text-4xl text-paper sm:text-5xl">Let us build something useful.</h1>
+      <h1 className="mt-3 font-serif text-4xl font-[750] tracking-[-0.02em] text-paper sm:text-5xl">Let us build something useful.</h1>
 
       <section className="mt-10">
         <p className="text-sm text-mute">Available for</p>

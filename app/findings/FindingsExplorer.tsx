@@ -86,7 +86,7 @@ export default function FindingsExplorer({ groups }: { groups: ProtocolGroup[] }
         {filteredGroups.map((group) => (
           <section key={group.protocol}>
             <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b border-line pb-3">
-              <h2 className="font-serif text-xl text-paper">{group.protocol}</h2>
+              <h2 className="font-serif text-xl font-[650] tracking-tight text-paper">{group.protocol}</h2>
               <span className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-wide text-mute">
                 {Array.from(new Set(group.findings.map((f) => f.chain))).map((c) => (
                   <span key={c} className="flex items-center gap-1">

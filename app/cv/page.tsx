@@ -161,7 +161,7 @@ export default function CVPage() {
       <div className="flex flex-wrap items-start justify-between gap-4 print:hidden">
         <div>
           <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">CV</p>
-          <h1 className="mt-3 font-serif text-4xl text-paper sm:text-5xl">GodwinXbt</h1>
+          <h1 className="mt-3 font-serif text-4xl font-[750] tracking-[-0.02em] text-paper sm:text-5xl">GodwinXbt</h1>
         </div>
         <PrintButton />
       </div>

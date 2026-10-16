@@ -11,7 +11,7 @@ export default function EngineeringPage() {
   return (
     <div className="mx-auto max-w-3xl px-5 py-16 sm:px-6 sm:py-20">
       <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">Engineering</p>
-      <h1 className="mt-3 font-serif text-4xl text-paper sm:text-5xl">The hard part is not the happy path.</h1>
+      <h1 className="mt-3 font-serif text-4xl font-[750] tracking-[-0.02em] text-paper sm:text-5xl">The hard part is not the happy path.</h1>
       <p className="mt-4 text-sm leading-relaxed text-mute">
         I enjoy building systems where the difficult part is not making the happy path work.
         It is making the system behave correctly when the environment does not cooperate.

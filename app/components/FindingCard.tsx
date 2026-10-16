@@ -13,7 +13,7 @@ export default function FindingCard({
   return (
     <Link
       href={`/findings/${finding.slug}`}
-      className="group flex h-full flex-col rounded-xl border border-line p-5 transition duration-200 hover:border-accent/50"
+      className="group flex h-full flex-col rounded-xl border border-line p-5 transition duration-200 hover:-translate-y-0.5 hover:border-accent/50"
     >
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">

@@ -48,7 +48,7 @@ export default async function FindingDetailPage({
             <ChainIcon chain={finding.chain} size={14} />
             {finding.chain}
           </p>
-          <h1 className="mt-2 break-words font-serif text-3xl tracking-tight text-paper sm:text-4xl">
+          <h1 className="mt-2 break-words font-serif text-3xl font-[750] tracking-[-0.02em] text-paper sm:text-4xl">
             {finding.title}
           </h1>
         </div>

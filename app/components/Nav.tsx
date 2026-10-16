@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Home, Briefcase, FlaskConical, Wrench, FileText, User, Mail } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 const links = [
   { href: "/", label: "Home", icon: Home },
@@ -40,6 +41,9 @@ export default function Nav() {
               </li>
             );
           })}
+          <li>
+            <ThemeToggle />
+          </li>
         </ul>
       </nav>
     </header>

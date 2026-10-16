@@ -10,7 +10,7 @@ export default function WorkPage() {
   return (
     <div className="mx-auto max-w-6xl px-5 py-16 sm:px-6 sm:py-20">
       <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">Work</p>
-      <h1 className="mt-3 font-serif text-4xl text-paper sm:text-5xl">Selected work</h1>
+      <h1 className="mt-3 font-serif text-4xl font-[750] tracking-[-0.02em] text-paper sm:text-5xl">Selected work</h1>
       <p className="mt-4 max-w-2xl text-sm leading-relaxed text-mute">
         Financial infrastructure, protocol mechanics, monitoring, and the research harnesses
         used to test whether those systems hold.
