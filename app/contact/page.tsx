@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 
 const links = [
   { name: "Email", href: "mailto:godwinxbt@gmail.com", label: "godwinxbt@gmail.com" },
-  { name: "GitHub", href: "https://github.com/Godwin-web3", label: "github.com/Godwin-web3", slug: "github", hex: "ffffff" },
-  { name: "X", href: "https://x.com/GodwinXbt", label: "x.com/GodwinXbt", slug: "x", hex: "ffffff" },
+  { name: "GitHub", href: "https://github.com/Godwin-web3", label: "github.com/Godwin-web3", slug: "github", hex: "271111" },
+  { name: "X", href: "https://x.com/GodwinXbt", label: "x.com/GodwinXbt", slug: "x", hex: "271111" },
   { name: "Telegram", href: "https://t.me/GodwinXbt", label: "t.me/GodwinXbt", slug: "telegram", hex: "26A5E4" },
 ];
 
@@ -43,14 +43,14 @@ export default function ContactPage() {
 
       <section className="mt-12">
         <h2 className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">Reach out</h2>
-        <ul className="mt-4 space-y-3">
+        <ul className="mt-4 flex flex-wrap gap-3">
           {links.map((l) => (
             <li key={l.name}>
               <a
                 href={l.href}
                 target={l.href.startsWith("http") ? "_blank" : undefined}
                 rel={l.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="inline-flex items-center gap-2 text-sm text-paper underline decoration-line underline-offset-4 hover:decoration-accent"
+                className="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-sm text-paper transition hover:border-accent"
               >
                 {l.slug && <BrandIcon item={{ name: l.name, slug: l.slug, hex: l.hex! }} size={16} showLabel={false} />}
                 {l.label}

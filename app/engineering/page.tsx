@@ -26,7 +26,7 @@ export default function EngineeringPage() {
           <h2 className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{label as string}</h2>
           <ul className="mt-4 grid gap-2 sm:grid-cols-2">
             {(items as typeof languages).map((item) => (
-              <li key={item.name} className="flex items-center gap-3 border border-line bg-card px-4 py-3 text-sm">
+              <li key={item.name} className="flex items-center gap-3 rounded-xl border border-line px-4 py-3 text-sm">
                 <BrandIcon item={item} />
               </li>
             ))}

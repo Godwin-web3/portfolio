@@ -19,8 +19,8 @@ export default function WorkExplorer() {
             key={c}
             type="button"
             onClick={() => setActive(c)}
-            className={`border px-3 py-1 font-mono text-[11px] uppercase tracking-wider ${
-              active === c ? "border-accent text-paper" : "border-line text-mute hover:text-paper"
+            className={`rounded-full border px-3 py-1 font-mono text-[11px] uppercase tracking-wider transition ${
+              active === c ? "border-accent text-paper" : "border-line text-mute hover:border-accent/40 hover:text-paper"
             }`}
           >
             {c}
