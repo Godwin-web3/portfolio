@@ -1,30 +1,30 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-instrument-sans);
   --font-mono: var(--font-geist-mono);
-  --font-serif: var(--font-instrument), "Iowan Old Style", Palatino, serif;
-  --color-ink: #0b0c0e;
-  --color-paper: #e8eaed;
-  --color-mute: #8b919a;
-  --color-line: #1c2128;
-  --color-card: #111418;
-  --color-accent: #7eb8ff;
+  --font-serif: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --color-ink: #fbf7f5;
+  --color-paper: #271111;
+  --color-mute: #7a6a64;
+  --color-line: #eee3de;
+  --color-card: #f5ede9;
+  --color-accent: #c23600;
 }
 
 :focus-visible {
-  outline: 1px solid #7eb8ff;
+  outline: 1px solid #c23600;
   outline-offset: 2px;
 }
 
 ::selection {
-  background: #7eb8ff;
-  color: #0b0c0e;
+  background: #c23600;
+  color: #fbf7f5;
 }
 
 body {
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(39, 17, 17, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(39, 17, 17, 0.035) 1px, transparent 1px);
   background-size: 48px 48px;
 }

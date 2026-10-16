@@ -13,7 +13,7 @@ export const languages: StackItem[] = [
 
 export const systems: StackItem[] = [
   { name: "React", slug: "react", hex: "61DAFB" },
-  { name: "Next.js", slug: "nextdotjs", hex: "ffffff" },
+  { name: "Next.js", slug: "nextdotjs", hex: "271111" },
   { name: "Node.js", slug: "nodedotjs", hex: "339933" },
   { name: "PostgreSQL", slug: "postgresql", hex: "4169E1" },
 ];
@@ -24,7 +24,7 @@ export const chains: StackItem[] = [
 ];
 
 export const infra: StackItem[] = [
-  { name: "Vercel", slug: "vercel", hex: "ffffff" },
+  { name: "Vercel", slug: "vercel", hex: "271111" },
   { name: "Docker", slug: "docker", hex: "2496ED" },
-  { name: "GitHub", slug: "github", hex: "ffffff" },
+  { name: "GitHub", slug: "github", hex: "271111" },
 ];

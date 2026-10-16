@@ -1,13 +1,14 @@
+import Image from "next/image";
 import Link from "next/link";
 import BrandIcon from "./components/BrandIcon";
 import SeverityBadge from "./components/SeverityBadge";
-import { featured } from "./lib/projects";
-import { findings } from "./lib/findings";
+import { featured, projects } from "./lib/projects";
+import { findings, stats } from "./lib/findings";
 import { languages, systems, chains, infra } from "./lib/stack";
 
 const socials = [
-  { name: "GitHub", slug: "github", hex: "ffffff", href: "https://github.com/Godwin-web3" },
-  { name: "X", slug: "x", hex: "ffffff", href: "https://x.com/GodwinXbt" },
+  { name: "GitHub", slug: "github", hex: "271111", href: "https://github.com/Godwin-web3" },
+  { name: "X", slug: "x", hex: "271111", href: "https://x.com/GodwinXbt" },
 ];
 
 const selectedFindings = [
@@ -19,13 +20,30 @@ const selectedFindings = [
 
 export default function Home() {
   const expertise = [...languages, ...systems, ...chains, ...infra];
+  const chainCount = new Set(findings.map((f) => f.chain)).size;
+
+  const glance = [
+    { label: "Findings", value: stats.totalFindings },
+    { label: "Protocols", value: stats.protocols },
+    { label: "Critical / High", value: stats.criticalOrHigh },
+    { label: "Chains", value: chainCount },
+    { label: "Projects", value: projects.length },
+  ];
 
   return (
     <div className="mx-auto max-w-2xl px-5 py-16 sm:px-6 sm:py-20">
-      <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">GodwinXbt</p>
-      <h1 className="mt-4 font-serif text-4xl leading-[1.1] tracking-tight text-paper sm:text-5xl">
-        I study how protocols fail before I write the code that is supposed to stop them.
-      </h1>
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
+        <div className="h-28 w-28 shrink-0 overflow-hidden rounded-2xl border border-line sm:h-36 sm:w-36">
+          <Image src="/avatar.jpg" alt="GodwinXbt" width={288} height={288} priority className="h-full w-full object-cover" />
+        </div>
+        <div>
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">GodwinXbt</p>
+          <h1 className="mt-3 font-serif text-3xl leading-[1.1] tracking-tight text-paper sm:text-4xl">
+            I study how protocols fail before I write the code that is supposed to stop them.
+          </h1>
+        </div>
+      </div>
+
       <div className="mt-6 space-y-4 text-base leading-relaxed text-mute">
         <p>
           I build and ship Solidity systems — payment infrastructure, protocol tooling, on-chain policy enforcement — then audit them the way an attacker would: reading real, deployed source, tracing root causes, proving exploits against forked mainnet state.
@@ -34,6 +52,18 @@ export default function Home() {
           Verified findings with working PoCs against live forks. Tools for monitoring invariants and adversarial research. Interests in DeFi, smart contract security, stablecoins, payments, and real-world settlement.
         </p>
       </div>
+
+      <section className="mt-10 rounded-2xl border border-line bg-card p-5 sm:p-6">
+        <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-accent">At a glance</p>
+        <dl className="mt-4 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-5">
+          {glance.map((g) => (
+            <div key={g.label} className="bg-card p-4">
+              <dd className="font-serif text-3xl text-paper">{g.value}</dd>
+              <dt className="mt-1 text-xs text-mute">{g.label}</dt>
+            </div>
+          ))}
+        </dl>
+      </section>
 
       <section className="mt-16">
         <div className="flex items-baseline justify-between">
@@ -104,25 +134,26 @@ export default function Home() {
         </p>
       </section>
 
-      <div className="mt-16 flex flex-wrap items-center gap-6">
+      <div className="mt-16 flex flex-wrap items-center gap-3">
         {socials.map((s) => (
           <a
             key={s.name}
             href={s.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm text-paper underline decoration-line underline-offset-4 hover:decoration-accent"
+            className="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-sm text-paper transition hover:border-accent"
           >
-            <BrandIcon item={s} size={16} />
+            <BrandIcon item={s} size={16} showLabel={false} />
+            {s.name}
           </a>
         ))}
-        <Link href="/about" className="text-sm text-paper underline decoration-line underline-offset-4 hover:decoration-accent">
+        <Link href="/about" className="rounded-full border border-line px-4 py-2 text-sm text-paper transition hover:border-accent">
           About
         </Link>
-        <Link href="/contact" className="text-sm text-paper underline decoration-line underline-offset-4 hover:decoration-accent">
+        <Link href="/contact" className="rounded-full border border-line px-4 py-2 text-sm text-paper transition hover:border-accent">
           Contact
         </Link>
-        <Link href="/findings" className="text-sm text-paper underline decoration-line underline-offset-4 hover:decoration-accent">
+        <Link href="/findings" className="rounded-full border border-line px-4 py-2 text-sm text-paper transition hover:border-accent">
           Findings
         </Link>
       </div>
