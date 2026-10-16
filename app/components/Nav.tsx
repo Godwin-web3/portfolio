@@ -2,15 +2,16 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Home, Briefcase, FlaskConical, Wrench, FileText, User, Mail } from "lucide-react";
 
 const links = [
-  { href: "/", label: "Home" },
-  { href: "/work", label: "Work" },
-  { href: "/research", label: "Research" },
-  { href: "/engineering", label: "Engineering" },
-  { href: "/cv", label: "CV" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", label: "Home", icon: Home },
+  { href: "/work", label: "Work", icon: Briefcase },
+  { href: "/research", label: "Research", icon: FlaskConical },
+  { href: "/engineering", label: "Engineering", icon: Wrench },
+  { href: "/cv", label: "CV", icon: FileText },
+  { href: "/about", label: "About", icon: User },
+  { href: "/contact", label: "Contact", icon: Mail },
 ];
 
 export default function Nav() {
@@ -25,9 +26,15 @@ export default function Nav() {
         <ul className="flex flex-wrap items-center justify-end gap-x-4 gap-y-1 font-mono text-xs uppercase tracking-wider text-mute sm:gap-x-5">
           {links.map((l) => {
             const active = l.href === "/" ? pathname === "/" : pathname.startsWith(l.href);
+            const Icon = l.icon;
             return (
               <li key={l.href}>
-                <Link href={l.href} aria-current={active ? "page" : undefined} className={`transition hover:text-paper ${active ? "text-accent" : ""}`}>
+                <Link
+                  href={l.href}
+                  aria-current={active ? "page" : undefined}
+                  className={`inline-flex items-center gap-1.5 transition hover:text-paper ${active ? "text-accent" : ""}`}
+                >
+                  <Icon size={13} strokeWidth={2} aria-hidden />
                   {l.label}
                 </Link>
               </li>

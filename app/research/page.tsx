@@ -30,7 +30,7 @@ export default function ResearchPage() {
       </p>
       <div className="mt-12 grid gap-4">
         {selected.map((f) => (
-          <Link key={f!.slug} href={`/findings/${f!.slug}`} className="min-w-0 border border-line bg-card p-5 transition hover:border-accent/40">
+          <Link key={f!.slug} href={`/findings/${f!.slug}`} className="min-w-0 rounded-xl border border-line p-5 transition duration-200 hover:border-accent/50">
             <div className="flex flex-wrap items-center gap-3">
               <SeverityBadge severity={f!.severity} />
               <span className="font-mono text-[11px] uppercase tracking-wider text-mute">{f!.protocol} · {f!.chain}</span>

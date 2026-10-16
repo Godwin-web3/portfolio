@@ -4,7 +4,7 @@ import type { Project } from "../lib/projects";
 
 export default function ProjectBlock({ project }: { project: Project }) {
   return (
-    <article className="border border-line bg-card">
+    <article className="overflow-hidden rounded-xl border border-line transition duration-200 hover:border-accent/50">
       {project.image ? (
         <div className="relative aspect-[16/9] border-b border-line bg-ink">
           <Image src={project.image} alt={project.title} fill className="object-cover" />
@@ -29,7 +29,7 @@ export default function ProjectBlock({ project }: { project: Project }) {
         </dl>
         <ul className="mt-5 flex flex-wrap gap-2">
           {project.tags.map((tag) => (
-            <li key={tag} className="border border-line px-2 py-1 font-mono text-[11px] text-mute">{tag}</li>
+            <li key={tag} className="rounded-full border border-line px-2.5 py-1 font-mono text-[11px] text-mute">{tag}</li>
           ))}
         </ul>
         <div className="mt-5 flex gap-5 font-mono text-[11px] uppercase tracking-wider">

@@ -13,7 +13,7 @@ export default function FindingCard({
   return (
     <Link
       href={`/findings/${finding.slug}`}
-      className="group flex h-full flex-col rounded-xl border border-paper/12 bg-card p-5 transition duration-200 hover:border-copper/45"
+      className="group flex h-full flex-col rounded-xl border border-line p-5 transition duration-200 hover:border-accent/50"
     >
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
@@ -22,7 +22,7 @@ export default function FindingCard({
             <ChainIcon chain={finding.chain} size={12} />
             {finding.chain}
           </p>
-          <h3 className="mt-1 break-words text-base font-medium text-paper transition group-hover:text-copper">
+          <h3 className="mt-1 break-words text-base font-medium text-paper transition group-hover:text-accent">
             {finding.title}
           </h3>
         </div>

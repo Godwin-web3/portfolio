@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 import BrandIcon from "./components/BrandIcon";
 import SeverityBadge from "./components/SeverityBadge";
 import { featured, projects } from "./lib/projects";
@@ -67,33 +68,10 @@ export default function Home() {
 
       <section className="mt-16">
         <div className="flex items-baseline justify-between">
-          <h2 className="font-serif text-2xl text-paper">Selected findings</h2>
-          <Link href="/research" className="font-mono text-[11px] uppercase tracking-wider text-mute hover:text-paper">
-            All research
-          </Link>
-        </div>
-        <ul className="mt-6 divide-y divide-line">
-          {selectedFindings.map((f) => (
-            <li key={f!.slug} className="py-5 first:pt-0">
-              <div className="flex flex-wrap items-center gap-3">
-                <SeverityBadge severity={f!.severity} />
-                <span className="font-mono text-[11px] uppercase tracking-wider text-mute">{f!.protocol} · {f!.chain}</span>
-              </div>
-              <Link href={`/findings/${f!.slug}`} className="mt-2 block font-medium text-paper underline decoration-line underline-offset-4 hover:decoration-accent">
-                {f!.title}
-              </Link>
-              <p className="mt-1 text-sm leading-relaxed text-mute">{f!.summary.slice(0, 140)}...</p>
-              <p className="mt-2 font-mono text-[11px] text-mute">{f!.status}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="mt-16">
-        <div className="flex items-baseline justify-between">
           <h2 className="font-serif text-2xl text-paper">Work</h2>
-          <Link href="/work" className="font-mono text-[11px] uppercase tracking-wider text-mute hover:text-paper">
+          <Link href="/work" className="inline-flex items-center gap-0.5 font-mono text-[11px] uppercase tracking-wider text-mute hover:text-paper">
             All work
+            <ChevronRight size={12} aria-hidden />
           </Link>
         </div>
         <ul className="mt-6 divide-y divide-line">
@@ -115,6 +93,31 @@ export default function Home() {
                 {p.tags.join(" · ")}
                 {p.live ? " · Live" : ""}
               </p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="mt-16">
+        <div className="flex items-baseline justify-between">
+          <h2 className="font-serif text-2xl text-paper">Selected findings</h2>
+          <Link href="/research" className="inline-flex items-center gap-0.5 font-mono text-[11px] uppercase tracking-wider text-mute hover:text-paper">
+            All research
+            <ChevronRight size={12} aria-hidden />
+          </Link>
+        </div>
+        <ul className="mt-6 divide-y divide-line">
+          {selectedFindings.map((f) => (
+            <li key={f!.slug} className="py-5 first:pt-0">
+              <div className="flex flex-wrap items-center gap-3">
+                <SeverityBadge severity={f!.severity} />
+                <span className="font-mono text-[11px] uppercase tracking-wider text-mute">{f!.protocol} · {f!.chain}</span>
+              </div>
+              <Link href={`/findings/${f!.slug}`} className="mt-2 block font-medium text-paper underline decoration-line underline-offset-4 hover:decoration-accent">
+                {f!.title}
+              </Link>
+              <p className="mt-1 text-sm leading-relaxed text-mute">{f!.summary.slice(0, 140)}...</p>
+              <p className="mt-2 font-mono text-[11px] text-mute">{f!.status}</p>
             </li>
           ))}
         </ul>

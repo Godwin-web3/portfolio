@@ -59,7 +59,7 @@ export default async function FindingDetailPage({
         <p className="mt-2 break-words font-mono text-xs text-mute">
           Contract:{" "}
           {explorer ? (
-            <a href={explorer} target="_blank" rel="noopener noreferrer" className="text-paper underline decoration-paper/25 underline-offset-4 hover:decoration-copper">
+            <a href={explorer} target="_blank" rel="noopener noreferrer" className="text-paper underline decoration-paper/25 underline-offset-4 hover:decoration-accent">
               {finding.address}
             </a>
           ) : (
@@ -69,21 +69,21 @@ export default async function FindingDetailPage({
       ) : null}
       <div className="mt-6 flex flex-wrap gap-2">
         {finding.tags.map((tag) => (
-          <span key={tag} className="rounded-full border border-paper/15 px-2.5 py-0.5 text-xs text-mute">
+          <span key={tag} className="rounded-full border border-line px-2.5 py-0.5 text-xs text-mute">
             {tag}
           </span>
         ))}
       </div>
       <section className="mt-10">
-        <h2 className="font-mono text-[11px] uppercase tracking-[0.22em] text-copper">Summary</h2>
+        <h2 className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">Summary</h2>
         <p className="mt-3 break-words leading-relaxed text-paper/85">{finding.summary}</p>
       </section>
       <section className="mt-10">
-        <h2 className="font-mono text-[11px] uppercase tracking-[0.22em] text-copper">Root cause</h2>
+        <h2 className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">Root cause</h2>
         <p className="mt-3 break-words leading-relaxed text-paper/85">{finding.rootCause}</p>
       </section>
       <section className="mt-10">
-        <h2 className="font-mono text-[11px] uppercase tracking-[0.22em] text-copper">Verification</h2>
+        <h2 className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">Verification</h2>
         <p className="mt-3 break-words leading-relaxed text-paper/85">{finding.verification}</p>
         <p className="mt-3 text-sm text-mute">
           {finding.verifiedLive
@@ -94,16 +94,16 @@ export default async function FindingDetailPage({
           href={profileFindingUrl(finding.slug)}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-paper underline decoration-copper/70 underline-offset-4 hover:decoration-copper"
+          className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-paper underline decoration-accent/70 underline-offset-4 hover:decoration-accent"
         >
           Receipt on GitHub
         </a>
       </section>
-      <div className="mt-16 flex items-start justify-between gap-4 border-t border-paper/10 pt-8 text-sm">
+      <div className="mt-16 flex items-start justify-between gap-4 border-t border-line pt-8 text-sm">
         {prev ? (
           <Link href={`/findings/${prev.slug}`} className="group block max-w-[45%] text-mute hover:text-paper">
             <span className="block text-xs">Previous</span>
-            <span className="mt-1 block truncate group-hover:text-copper">{prev.title}</span>
+            <span className="mt-1 block truncate group-hover:text-accent">{prev.title}</span>
           </Link>
         ) : (
           <span />
@@ -111,7 +111,7 @@ export default async function FindingDetailPage({
         {next ? (
           <Link href={`/findings/${next.slug}`} className="group block max-w-[45%] text-right text-mute hover:text-paper">
             <span className="block text-xs">Next</span>
-            <span className="mt-1 block truncate group-hover:text-copper">{next.title}</span>
+            <span className="mt-1 block truncate group-hover:text-accent">{next.title}</span>
           </Link>
         ) : null}
       </div>

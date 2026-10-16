@@ -13,14 +13,14 @@ export const metadata: Metadata = {
 export default function FindingsPage() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-16 sm:px-6 sm:py-20">
-      <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-copper">Findings</p>
+      <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">Findings</p>
       <h1 className="mt-3 font-serif text-4xl tracking-tight text-paper sm:text-5xl">
         {stats.totalFindings} findings across {stats.protocols} protocols
       </h1>
       <p className="mt-4 max-w-2xl text-sm leading-relaxed text-mute">
         Selected work lives on the{" "}
-        <Link href="/#work" className="text-paper underline decoration-paper/30 underline-offset-4 hover:decoration-copper">
-          homepage
+        <Link href="/work" className="text-paper underline decoration-paper/30 underline-offset-4 hover:decoration-accent">
+          work page
         </Link>
         . Every entry here has a working proof-of-concept or an independently traced root cause
         against real source and, where possible, forked mainnet state. Severity is reported as
