@@ -1,42 +1,92 @@
 import Link from "next/link";
-import ProjectBlock from "./components/ProjectBlock";
-import { featured } from "./lib/projects";
+import { projects, featured } from "./lib/projects";
+import { stack } from "./lib/work";
 
 export default function Home() {
   return (
-    <div className="mx-auto max-w-6xl px-5 sm:px-6">
-      <section className="pb-10 pt-16 sm:pt-24">
-        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">GodwinXbt</p>
-        <h1 className="mt-4 max-w-3xl font-serif text-4xl leading-[1.08] tracking-tight text-paper sm:text-6xl">
-          Engineer building financial systems, protocols, and infrastructure.
-        </h1>
-        <p className="mt-6 max-w-2xl text-base leading-relaxed text-mute sm:text-lg">
-          I build software around payments, blockchain systems, developer infrastructure,
-          and security. Focus: how systems behave when the environment does not cooperate.
+    <div className="mx-auto max-w-2xl px-5 py-16 sm:px-6 sm:py-20">
+      <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">GodwinXbt</p>
+      <h1 className="mt-4 font-serif text-4xl leading-[1.1] tracking-tight text-paper sm:text-5xl">
+        I study how protocols fail before I write the code that is supposed to stop them.
+      </h1>
+      <div className="mt-6 space-y-4 text-base leading-relaxed text-mute">
+        <p>
+          Researcher first. Builder second. I follow the mechanism: contracts, settlement paths, accounting, and the places a system can break even when the dashboard looks fine.
         </p>
-        <p className="mt-4 font-mono text-xs uppercase tracking-wider text-mute">
-          Software · Protocols · Payments · Infrastructure · Security
+        <p>
+          Interests sit at DeFi, smart contract security, stablecoins, payments, privacy, and real-world financial infrastructure. The Naira-to-RMB problem is not theoretical.
         </p>
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link href="/work" className="bg-paper px-5 py-2.5 text-sm font-medium text-ink hover:bg-white">
-            View work
+      </div>
+
+      <section className="mt-16">
+        <div className="flex items-baseline justify-between">
+          <h2 className="font-serif text-2xl text-paper">Work</h2>
+          <Link href="/work" className="font-mono text-[11px] uppercase tracking-wider text-mute hover:text-paper">
+            All work
           </Link>
-          <a href="https://github.com/Godwin-web3" target="_blank" rel="noopener noreferrer" className="border border-line px-5 py-2.5 text-sm text-paper hover:border-paper/40">
-            GitHub
-          </a>
         </div>
-      </section>
-      <section className="pb-20">
-        <div className="flex items-end justify-between">
-          <h2 className="font-serif text-3xl text-paper">Selected work</h2>
-          <Link href="/work" className="font-mono text-[11px] uppercase tracking-wider text-mute hover:text-paper">All work</Link>
-        </div>
-        <div className="mt-8 grid gap-8">
-          {featured.map((project) => (
-            <ProjectBlock key={project.slug} project={project} />
+        <ul className="mt-6 space-y-5">
+          {featured.map((p) => (
+            <li key={p.slug} className="border-b border-line pb-5 last:border-0">
+              <div className="flex flex-wrap items-baseline gap-x-3">
+                <a
+                  href={p.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-paper underline decoration-line underline-offset-4 hover:decoration-accent"
+                >
+                  {p.title}
+                </a>
+                <span className="text-sm text-mute">{p.line}</span>
+              </div>
+              <p className="mt-1 text-sm text-mute">{p.problem}</p>
+              <p className="mt-2 font-mono text-[11px] uppercase tracking-wider text-mute">
+                {p.tags.join(" · ")}
+                {p.live ? " · Live" : ""}
+              </p>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
+
+      <section className="mt-16">
+        <h2 className="font-serif text-2xl text-paper">Expertise</h2>
+        <ul className="mt-6 grid grid-cols-2 gap-x-6 gap-y-2 text-sm text-mute sm:grid-cols-3">
+          {stack.map((s) => (
+            <li key={s.name} className="border-b border-line/50 py-1">
+              {s.name}
+            </li>
+          ))}
+        </ul>
+        <p className="mt-4 text-sm text-mute">
+          Solidity and Foundry for contracts and fork proofs. TypeScript and Next.js for surfaces. viem for reads and traces.
+        </p>
+      </section>
+
+      <section className="mt-16">
+        <h2 className="font-serif text-2xl text-paper">Focus</h2>
+        <ul className="mt-4 space-y-1 text-sm text-mute">
+          <li>Protocol accounting and settlement paths</li>
+          <li>Smart contract security and attack surfaces</li>
+          <li>Stablecoins and payment infrastructure</li>
+          <li>On-chain data, transaction traces, primary sources</li>
+        </ul>
+      </section>
+
+      <div className="mt-16 flex flex-wrap gap-5 text-sm">
+        <a href="https://github.com/Godwin-web3" target="_blank" rel="noopener noreferrer" className="text-paper underline decoration-line underline-offset-4 hover:decoration-accent">
+          GitHub
+        </a>
+        <a href="https://x.com/GodwinXbt" target="_blank" rel="noopener noreferrer" className="text-paper underline decoration-line underline-offset-4 hover:decoration-accent">
+          X
+        </a>
+        <Link href="/about" className="text-paper underline decoration-line underline-offset-4 hover:decoration-accent">
+          About
+        </Link>
+        <Link href="/contact" className="text-paper underline decoration-line underline-offset-4 hover:decoration-accent">
+          Contact
+        </Link>
+      </div>
     </div>
   );
 }
