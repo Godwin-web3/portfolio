@@ -1,10 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 import BrandIcon from "./components/BrandIcon";
 import SeverityBadge from "./components/SeverityBadge";
 import { featured } from "./lib/projects";
 import { findings } from "./lib/findings";
-import { languages, systems, chains, infra, simpleIconUrl } from "./lib/stack";
+import { languages, systems, chains, infra } from "./lib/stack";
 
 const socials = [
   { name: "GitHub", slug: "github", hex: "ffffff", href: "https://github.com/Godwin-web3" },
@@ -114,8 +113,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-sm text-paper underline decoration-line underline-offset-4 hover:decoration-accent"
           >
-            <Image src={simpleIconUrl(s.slug, s.hex)} alt="" width={16} height={16} unoptimized className="opacity-90" />
-            {s.name}
+            <BrandIcon item={s} size={16} />
           </a>
         ))}
         <Link href="/about" className="text-sm text-paper underline decoration-line underline-offset-4 hover:decoration-accent">

@@ -28,7 +28,3 @@ export const infra: StackItem[] = [
   { name: "Docker", slug: "docker", hex: "2496ED" },
   { name: "GitHub", slug: "github", hex: "ffffff" },
 ];
-
-export function simpleIconUrl(slug: string, hex: string) {
-  return `https://cdn.simpleicons.org/${slug}/${hex}`;
-}
