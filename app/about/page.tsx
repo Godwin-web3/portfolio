@@ -16,7 +16,7 @@ export default function AboutPage() {
         Engineer. Protocol researcher. Security as a method.
       </h1>
       <div className="mt-8 space-y-5 text-base leading-relaxed text-mute">
-        <p>
+        <p className="text-[19px] font-medium leading-snug text-paper/90">
           I am GodwinXbt. I build and ship Solidity systems, and I study protocols, contracts, attack surfaces, payments, and the systems that connect them.
         </p>
         <p>

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ExternalLink, ChevronRight } from "lucide-react";
 import type { Project } from "../lib/projects";
+import BrandIcon from "./BrandIcon";
 
 export default function ProjectBlock({ project }: { project: Project }) {
   return (
@@ -32,12 +34,34 @@ export default function ProjectBlock({ project }: { project: Project }) {
             <li key={tag} className="rounded-full border border-line px-2.5 py-1 font-mono text-[11px] text-mute">{tag}</li>
           ))}
         </ul>
-        <div className="mt-5 flex gap-5 font-mono text-[11px] uppercase tracking-wider">
-          <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-paper underline decoration-line underline-offset-4 hover:decoration-accent">GitHub</a>
+        <div className="mt-5 flex flex-wrap items-center gap-2">
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-full border border-line px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider text-paper transition hover:border-accent"
+          >
+            <BrandIcon item={{ name: "GitHub", slug: "github", hex: "currentColor" }} size={12} showLabel={false} />
+            GitHub
+          </a>
           {project.live ? (
-            <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-paper underline decoration-line underline-offset-4 hover:decoration-accent">Live</a>
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full border border-line px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider text-paper transition hover:border-accent"
+            >
+              <ExternalLink size={12} aria-hidden />
+              Live
+            </a>
           ) : null}
-          <Link href="/work" className="text-mute hover:text-paper">All work</Link>
+          <Link
+            href="/work"
+            className="ml-auto inline-flex items-center gap-0.5 font-mono text-[11px] uppercase tracking-wider text-mute hover:text-paper"
+          >
+            All work
+            <ChevronRight size={12} aria-hidden />
+          </Link>
         </div>
       </div>
     </article>

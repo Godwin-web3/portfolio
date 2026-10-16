@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 import type { Finding } from "@/app/lib/findings";
 import ChainIcon from "./ChainIcon";
 import SeverityBadge from "./SeverityBadge";
@@ -29,7 +30,10 @@ export default function FindingCard({
         <SeverityBadge severity={finding.severity} />
       </div>
       <p className="mt-3 flex-1 break-words text-sm leading-relaxed text-mute">{finding.summary}</p>
-      <p className="mt-4 font-mono text-[11px] text-mute">{finding.status}</p>
+      <div className="mt-4 flex items-center justify-between">
+        <p className="font-mono text-[11px] text-mute">{finding.status}</p>
+        <ChevronRight size={14} className="text-mute transition group-hover:translate-x-0.5 group-hover:text-accent" aria-hidden />
+      </div>
     </Link>
   );
 }

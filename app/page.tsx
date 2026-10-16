@@ -25,11 +25,11 @@ export default function Home() {
   const chainCount = new Set(findings.map((f) => f.chain)).size;
 
   const glance = [
-    { label: "Findings", value: stats.totalFindings },
-    { label: "Protocols", value: stats.protocols },
-    { label: "Critical / High", value: stats.criticalOrHigh },
-    { label: "Chains", value: chainCount },
-    { label: "Projects", value: projects.length },
+    { label: "Findings", value: stats.totalFindings, href: "/findings" },
+    { label: "Protocols", value: stats.protocols, href: "/research" },
+    { label: "Critical / High", value: stats.criticalOrHigh, href: "/findings" },
+    { label: "Chains", value: chainCount, href: "/findings" },
+    { label: "Projects", value: projects.length, href: "/work" },
   ];
 
   return (
@@ -52,11 +52,11 @@ export default function Home() {
         </Reveal>
       </div>
 
-      <Reveal delay={0.1} className="mt-6 space-y-4 text-base leading-relaxed text-mute">
-        <p>
+      <Reveal delay={0.1} className="mt-6 space-y-4 text-mute">
+        <p className="text-[19px] font-medium leading-snug text-paper/90">
           I build and ship Solidity systems — payment infrastructure, protocol tooling, on-chain policy enforcement — then audit them the way an attacker would: reading real, deployed source, tracing root causes, proving exploits against forked mainnet state.
         </p>
-        <p>
+        <p className="text-base leading-relaxed">
           Verified findings with working PoCs against live forks. Tools for monitoring invariants and adversarial research. Interests in DeFi, smart contract security, stablecoins, payments, and real-world settlement.
         </p>
       </Reveal>
@@ -65,10 +65,17 @@ export default function Home() {
         <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-accent">At a glance</p>
         <dl className="mt-4 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-5">
           {glance.map((g) => (
-            <div key={g.label} className="bg-card p-4">
-              <dd className="font-serif text-3xl font-[650] text-paper">{g.value}</dd>
+            <Link
+              key={g.label}
+              href={g.href}
+              className="group flex flex-col items-start bg-card p-4 transition hover:bg-ink"
+            >
+              <div className="flex w-full items-start justify-between">
+                <dd className="font-serif text-3xl font-[650] text-paper">{g.value}</dd>
+                <ChevronRight size={14} className="mt-1 text-mute transition group-hover:translate-x-0.5 group-hover:text-accent" aria-hidden />
+              </div>
               <dt className="mt-1 text-xs text-mute">{g.label}</dt>
-            </div>
+            </Link>
           ))}
         </dl>
       </Reveal>
@@ -81,25 +88,30 @@ export default function Home() {
             <ChevronRight size={12} aria-hidden />
           </Link>
         </div>
-        <ul className="mt-6 divide-y divide-line">
+        <ul className="mt-4 divide-y divide-line">
           {featured.map((p) => (
-            <li key={p.slug} className="py-5 first:pt-0">
-              <div className="flex flex-wrap items-baseline gap-x-3">
-                <a
-                  href={p.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium text-paper underline decoration-line underline-offset-4 hover:decoration-accent"
-                >
-                  {p.title}
-                </a>
-                <span className="text-sm text-mute">{p.line}</span>
-              </div>
-              <p className="mt-1 text-sm leading-relaxed text-mute">{p.problem}</p>
-              <p className="mt-2 font-mono text-[11px] uppercase tracking-wider text-mute">
-                {p.tags.join(" · ")}
-                {p.live ? " · Live" : ""}
-              </p>
+            <li key={p.slug}>
+              <a
+                href={p.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group -mx-3 flex items-start justify-between gap-4 rounded-lg px-3 py-5 transition hover:bg-card"
+              >
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-baseline gap-x-3">
+                    <span className="font-medium text-paper underline decoration-line underline-offset-4 group-hover:decoration-accent">
+                      {p.title}
+                    </span>
+                    <span className="text-sm text-mute">{p.line}</span>
+                  </div>
+                  <p className="mt-1 text-sm leading-relaxed text-mute">{p.problem}</p>
+                  <p className="mt-2 font-mono text-[11px] uppercase tracking-wider text-mute">
+                    {p.tags.join(" · ")}
+                    {p.live ? " · Live" : ""}
+                  </p>
+                </div>
+                <ChevronRight size={16} className="mt-1 shrink-0 text-mute transition group-hover:translate-x-0.5 group-hover:text-accent" aria-hidden />
+              </a>
             </li>
           ))}
         </ul>
@@ -113,18 +125,26 @@ export default function Home() {
             <ChevronRight size={12} aria-hidden />
           </Link>
         </div>
-        <ul className="mt-6 divide-y divide-line">
+        <ul className="mt-4 divide-y divide-line">
           {selectedFindings.map((f) => (
-            <li key={f!.slug} className="py-5 first:pt-0">
-              <div className="flex flex-wrap items-center gap-3">
-                <SeverityBadge severity={f!.severity} />
-                <span className="font-mono text-[11px] uppercase tracking-wider text-mute">{f!.protocol} · {f!.chain}</span>
-              </div>
-              <Link href={`/findings/${f!.slug}`} className="mt-2 block font-medium text-paper underline decoration-line underline-offset-4 hover:decoration-accent">
-                {f!.title}
+            <li key={f!.slug}>
+              <Link
+                href={`/findings/${f!.slug}`}
+                className="group -mx-3 flex items-start justify-between gap-4 rounded-lg px-3 py-5 transition hover:bg-card"
+              >
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <SeverityBadge severity={f!.severity} />
+                    <span className="font-mono text-[11px] uppercase tracking-wider text-mute">{f!.protocol} · {f!.chain}</span>
+                  </div>
+                  <p className="mt-2 font-medium text-paper underline decoration-line underline-offset-4 group-hover:decoration-accent">
+                    {f!.title}
+                  </p>
+                  <p className="mt-1 text-sm leading-relaxed text-mute">{f!.summary.slice(0, 140)}...</p>
+                  <p className="mt-2 font-mono text-[11px] text-mute">{f!.status}</p>
+                </div>
+                <ChevronRight size={16} className="mt-1 shrink-0 text-mute transition group-hover:translate-x-0.5 group-hover:text-accent" aria-hidden />
               </Link>
-              <p className="mt-1 text-sm leading-relaxed text-mute">{f!.summary.slice(0, 140)}...</p>
-              <p className="mt-2 font-mono text-[11px] text-mute">{f!.status}</p>
             </li>
           ))}
         </ul>
