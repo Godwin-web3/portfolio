@@ -10,6 +10,13 @@ export default function WorkExplorer() {
     () => (active === "All" ? projects : projects.filter((p) => p.categories.includes(active))),
     [active],
   );
+  const counts = useMemo(() => {
+    const c: Record<string, number> = { All: projects.length };
+    for (const category of categories) {
+      c[category] = projects.filter((p) => p.categories.includes(category)).length;
+    }
+    return c;
+  }, []);
 
   return (
     <div>
@@ -19,11 +26,14 @@ export default function WorkExplorer() {
             key={c}
             type="button"
             onClick={() => setActive(c)}
+            aria-pressed={active === c}
             className={`rounded-full border px-3 py-1 font-mono text-[11px] uppercase tracking-wider transition ${
-              active === c ? "border-accent text-paper" : "border-line text-mute hover:border-accent/40 hover:text-paper"
+              active === c
+                ? "border-paper bg-paper text-ink"
+                : "border-line text-mute hover:border-accent/40 hover:text-paper"
             }`}
           >
-            {c}
+            {c} {counts[c]}
           </button>
         ))}
       </div>

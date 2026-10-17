@@ -103,11 +103,15 @@ export default function Home() {
                       {p.title}
                     </span>
                     <span className="text-sm text-mute">{p.line}</span>
+                    {p.live && (
+                      <span className="inline-flex items-center rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-semibold text-emerald-700">
+                        Live
+                      </span>
+                    )}
                   </div>
                   <p className="mt-1 text-sm leading-relaxed text-mute">{p.problem}</p>
                   <p className="mt-2 font-mono text-[11px] uppercase tracking-wider text-mute">
                     {p.tags.join(" · ")}
-                    {p.live ? " · Live" : ""}
                   </p>
                 </div>
                 <ChevronRight size={16} className="mt-1 shrink-0 text-mute transition group-hover:translate-x-0.5 group-hover:text-accent" aria-hidden />

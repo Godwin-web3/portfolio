@@ -3,6 +3,7 @@
 import { useState } from "react";
 import ChainIcon from "../components/ChainIcon";
 import FindingCard from "../components/FindingCard";
+import { severityStyles } from "../components/SeverityBadge";
 import type { ProtocolGroup, Severity } from "../lib/findings";
 
 const SEVERITY_ORDER: Severity[] = ["Critical", "High", "Medium", "Low", "Informational"];
@@ -10,6 +11,9 @@ const SEVERITY_ORDER: Severity[] = ["Critical", "High", "Medium", "Low", "Inform
 export default function FindingsExplorer({ groups }: { groups: ProtocolGroup[] }) {
   const allFindings = groups.flatMap((g) => g.findings);
   const severities = SEVERITY_ORDER.filter((s) => allFindings.some((f) => f.severity === s));
+  const severityCounts = Object.fromEntries(
+    severities.map((s) => [s, allFindings.filter((f) => f.severity === s).length]),
+  );
   const chains = Array.from(new Set(allFindings.map((f) => f.chain))).sort();
 
   const [activeSeverities, setActiveSeverities] = useState<Set<Severity>>(new Set());
@@ -54,11 +58,11 @@ export default function FindingsExplorer({ groups }: { groups: ProtocolGroup[] }
             aria-pressed={activeSeverities.has(s)}
             className={`rounded-full border px-3 py-1 text-xs font-medium transition ${
               activeSeverities.has(s)
-                ? "border-accent/50 bg-accent/10 text-paper"
+                ? `border-transparent ${severityStyles[s]}`
                 : "border-line text-mute hover:border-accent/40 hover:text-paper"
             }`}
           >
-            {s}
+            {s} {severityCounts[s]}
           </button>
         ))}
         <span className="mx-1 h-4 w-px bg-line" aria-hidden />

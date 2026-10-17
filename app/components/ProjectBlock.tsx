@@ -14,7 +14,14 @@ export default function ProjectBlock({ project }: { project: Project }) {
       ) : null}
       <div className="p-5 sm:p-6">
         <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-accent">{project.line}</p>
-        <h3 className="mt-2 font-serif text-3xl font-[650] tracking-tight text-paper">{project.title}</h3>
+        <div className="mt-2 flex flex-wrap items-center gap-2.5">
+          <h3 className="font-serif text-3xl font-[650] tracking-tight text-paper">{project.title}</h3>
+          {project.live && (
+            <span className="inline-flex items-center rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-semibold text-emerald-700">
+              Live
+            </span>
+          )}
+        </div>
         <dl className="mt-5 grid gap-5 text-sm leading-relaxed text-mute sm:grid-cols-3">
           <div>
             <dt className="font-mono text-[11px] uppercase tracking-wider text-accent">Problem</dt>
