@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "GodwinXbt builds financial and distributed systems and tests whether they behave as designed.",
+  description: "GodwinXbt builds Solidity systems and researches how financial protocols behave under adversarial conditions.",
 };
 
 export default function AboutPage() {
@@ -13,20 +13,17 @@ export default function AboutPage() {
       <Image src="/avatar.jpg" alt="GodwinXbt" width={96} height={96} className="h-24 w-24 rounded-2xl border border-line object-cover" />
       <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.22em] text-accent">About</p>
       <h1 className="mt-3 font-serif text-4xl font-[750] leading-[1.1] tracking-[-0.02em] text-paper sm:text-5xl">
-        Engineer. Protocol researcher. Security as a method.
+        Software developer. Protocol researcher... Security as a method.
       </h1>
       <div className="mt-8 space-y-5 text-base leading-relaxed text-mute">
         <p className="text-[19px] font-medium leading-snug text-paper/90">
-          I am GodwinXbt. I build and ship Solidity systems, and I study protocols, contracts, attack surfaces, payments, and the systems that connect them.
+          I build and ship Solidity systems, research protocol design, and investigate how financial systems behave under adversarial conditions.
         </p>
         <p>
-          I started with the question of how systems fail when their assumptions stop holding. That remains the filter: follow the accounting, the settlement path, the transaction traces.
+          My work focuses on DeFi, smart contract security, stablecoins, payments, privacy, and financial infrastructure. I study the mechanics beneath the interface: accounting invariants, settlement paths, trust assumptions, and the conditions under which systems break.
         </p>
         <p>
-          The work sits at the intersection of DeFi, smart contract security, stablecoins, payments, privacy, and real-world financial infrastructure. Problems I can verify with on-chain data, contract code, and primary sources.
-        </p>
-        <p>
-          Self-taught. The only computer for a long time was a phone. Crypto gave access to systems that traditional rails left closed. The Naira-to-RMB payment friction is one I have seen directly.
+          I approach research through code, transaction traces, on-chain data, and primary sources. The objective is to understand what a system actually guarantees, where those guarantees fail, and what the failure means in practice.
         </p>
       </div>
       <div className="mt-10 flex flex-wrap gap-3">
