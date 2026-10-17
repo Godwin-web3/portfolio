@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Geist_Mono, Instrument_Sans, Bricolage_Grotesque } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
-import Nav from "./components/Nav";
+import Sidebar from "./components/Sidebar";
+import MobileNav from "./components/MobileNav";
 import Footer from "./components/Footer";
 
 const instrumentSans = Instrument_Sans({ variable: "--font-instrument-sans", subsets: ["latin"] });
@@ -37,10 +38,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
-      <body className="flex min-h-full flex-col bg-ink font-sans text-paper">
-        <Nav />
-        <main className="flex-1">{children}</main>
-        <Footer />
+      <body className="flex min-h-full flex-col bg-ink font-sans text-paper md:flex-row">
+        <Sidebar />
+        <MobileNav />
+        <div className="flex min-w-0 flex-1 flex-col">
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </div>
         <Analytics />
       </body>
     </html>
